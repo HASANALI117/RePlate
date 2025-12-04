@@ -1,20 +1,30 @@
-
+//
 import SwiftUI
 
 struct SplashView: View {
-    var body: some View {
-        ZStack {
-            Color.green.ignoresSafeArea()
-            VStack(spacing: 20) {
-                Image(systemName: "leaf.fill")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
+    @State private var navigate = false
 
-                Text("RePlate")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color(red: 53/255, green: 123/255, blue: 73/255)
+                    .ignoresSafeArea()
+
+                VStack(spacing: 20) {
+                    Image("RePlate_logo")
+                        .resizable()
+                        .frame(width: 189, height: 189)
+
+                }
+
+                NavigationLink(destination: LoginView(), isActive: $navigate) {
+                    EmptyView()
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    navigate = true
+                }
             }
         }
     }

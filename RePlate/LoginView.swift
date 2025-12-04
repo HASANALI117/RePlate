@@ -20,6 +20,7 @@ struct LoginView: View {
 
             Spacer()
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
     }
 }
