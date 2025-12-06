@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+      //  let initialVC = storyboard.instantiateViewController(withIdentifier: "RegisterViewController")
+       // let initialVC = storyboard.instantiateViewController(withIdentifier: "SelectTypeViewController")
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = initialVC

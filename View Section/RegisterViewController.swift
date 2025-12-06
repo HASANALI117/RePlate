@@ -4,73 +4,78 @@
 //
 //  Created by Basem Elkhayat on 05/12/2025.
 //
-
 import UIKit
 
 class RegisterViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        }
-  
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
 
-    @IBAction func SignUp(_ sender: UIButton) {
-    }
-    
-    
-    private func setupUI() {
-        
-        // Secure password fields
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        phoneTextField.keyboardType = .numberPad
+        emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
-        
-        // Keyboard types
-        emailTextField.keyboardType = .emailAddress
-        phoneTextField.keyboardType = .phonePad
     }
-    @IBAction func backButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
-
 
     @IBAction func signUpTapped(_ sender: UIButton) {
-        
-        let name = nameTextField.text ?? ""
-        let phone = phoneTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-        let confirmPassword = confirmPasswordTextField.text ?? ""
 
-        // Validation
-        if name.isEmpty || phone.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-            showAlert(title: "Error", message: "All fields are required")
+        guard let name = nameTextField.text, !name.isEmpty,
+              let phone = phoneTextField.text, !phone.isEmpty,
+              let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty,
+              let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty
+        else {
+            showAlert(title: "Error", message: "Please fill in all fields.")
+            return
+        }
+
+        if !isValidPhone(phone) {
+            showAlert(title: "Invalid Phone", message: "Phone number must contain numbers only.")
+            return
+        }
+
+        if !isValidEmail(email) {
+            showAlert(title: "Invalid Email", message: "Please enter a valid email address.")
             return
         }
 
         if password != confirmPassword {
-            showAlert(title: "Error", message: "Passwords do not match")
+            showAlert(title: "Password Error", message: "Passwords do not match.")
             return
         }
 
-        if password.count < 6 {
-            showAlert(title: "Error", message: "Password must be at least 6 characters")
-            return
-        }
-
-    
-        showAlert(title: "Success", message: "Account created successfully")
+        goToSelectType()
     }
 
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return predicate.evaluate(with: email)
+    }
 
-    private func showAlert(title: String, message: String) {
+    func isValidPhone(_ phone: String) -> Bool {
+        let phoneRegEx = "^[0-9]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegEx)
+        return predicate.evaluate(with: phone)
+    }
+
+    func goToSelectType() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SelectTypeViewController")
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        self.present(alert, animated: true)
     }
 }
