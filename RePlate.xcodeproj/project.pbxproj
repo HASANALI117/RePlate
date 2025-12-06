@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4763EEAC2EE30576008A2CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4763EEAB2EE30576008A2CFB /* AppDelegate.swift */; };
-		4763EEAE2EE305D9008A2CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4763EEAD2EE305D9008A2CFB /* Main.storyboard */; };
-		4763EEB02EE3064F008A2CFB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4763EEAF2EE3064F008A2CFB /* LoginViewController.swift */; };
 		4763EEB22EE308D6008A2CFB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */; };
-		4763EEB42EE30E5D008A2CFB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4763EEB32EE30E5D008A2CFB /* RegisterViewController.swift */; };
-		478749512EE2E70A00347B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478749422EE2E70A00347B1B /* Assets.xcassets */; };
+		4763EEB92EE4170F008A2CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4763EEB82EE4170F008A2CFB /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +34,17 @@
 		4763EE9E2EE303B0008A2CFB /* RePlateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = RePlateUITests.xctest; path = "/Users/basemelkhayat/Desktop/RePlate/build/Debug-iphoneos/RePlateUITests-Runner.app/PlugIns/RePlateUITests.xctest"; sourceTree = "<absolute>"; };
 		4763EEAA2EE3047E008A2CFB /* RePlate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RePlate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4763EEAB2EE30576008A2CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4763EEAD2EE305D9008A2CFB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		4763EEAF2EE3064F008A2CFB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		4763EEB32EE30E5D008A2CFB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		478749422EE2E70A00347B1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4763EEB82EE4170F008A2CFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4763EEB52EE327A1008A2CFB /* View Section */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "View Section";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		47C3BC452EE14A3500864E5D /* Frameworks */ = {
@@ -72,13 +74,11 @@
 		47C3BC3F2EE14A3500864E5D = {
 			isa = PBXGroup;
 			children = (
-				478749422EE2E70A00347B1B /* Assets.xcassets */,
+				4763EEB82EE4170F008A2CFB /* Assets.xcassets */,
 				4763EEAA2EE3047E008A2CFB /* RePlate.app */,
 				4763EEAB2EE30576008A2CFB /* AppDelegate.swift */,
-				4763EEAD2EE305D9008A2CFB /* Main.storyboard */,
-				4763EEB32EE30E5D008A2CFB /* RegisterViewController.swift */,
 				4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */,
-				4763EEAF2EE3064F008A2CFB /* LoginViewController.swift */,
+				4763EEB52EE327A1008A2CFB /* View Section */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +96,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4763EEB52EE327A1008A2CFB /* View Section */,
 			);
 			name = RePlate;
 			packageProductDependencies = (
@@ -195,8 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4763EEB22EE308D6008A2CFB /* Launch Screen.storyboard in Resources */,
-				478749512EE2E70A00347B1B /* Assets.xcassets in Resources */,
-				4763EEAE2EE305D9008A2CFB /* Main.storyboard in Resources */,
+				4763EEB92EE4170F008A2CFB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,8 +223,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4763EEB42EE30E5D008A2CFB /* RegisterViewController.swift in Sources */,
-				4763EEB02EE3064F008A2CFB /* LoginViewController.swift in Sources */,
 				4763EEAC2EE30576008A2CFB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
