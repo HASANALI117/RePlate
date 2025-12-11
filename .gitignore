@@ -1,0 +1,67 @@
+### Xcode ###
+DerivedData/
+build/
+Build/
+*.xccheckout
+*.xcscmblueprint
+
+# User-specific Xcode settings
+*.xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+
+### iOS ###
+# App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Generated plist files (Firebase may generate some)
+GoogleService-Info.plist
+
+### Swift Package Manager ###
+.swiftpm/
+.build/
+Package.resolved
+
+### CocoaPods (if used) ###
+Pods/
+*.xcworkspace/contents.xcworkspacedata
+!Podfile
+!Podfile.lock
+
+### Firebase ###
+# Firebase Crashlytics build artifacts
+firebase_app_id_file.json
+.crashlytics/
+
+# Firebase Analytics info
+analytics-debug.log
+
+### Carthage (if used) ###
+Carthage/Build/
+
+### Fastlane (optional) ###
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Temporary files ###
+*.swp
+*.lock
+*.tmp
+*.local
+*.orig
+
