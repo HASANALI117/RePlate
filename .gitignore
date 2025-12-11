@@ -23,7 +23,7 @@ Build/
 *.dSYM
 
 # Generated plist files (Firebase may generate some)
-GoogleService-Info.plist
+# GoogleService-Info.plist
 
 ### Swift Package Manager ###
 .swiftpm/
