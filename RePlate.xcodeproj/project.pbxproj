@@ -7,214 +7,132 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4763EEAC2EE30576008A2CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4763EEAB2EE30576008A2CFB /* AppDelegate.swift */; };
-		4763EEB22EE308D6008A2CFB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */; };
-		4763EEB92EE4170F008A2CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4763EEB82EE4170F008A2CFB /* Assets.xcassets */; };
-		47B3DC632EE41B4300778CE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B3DC622EE41B4300778CE1 /* SceneDelegate.swift */; };
+		CC723CA82EEAB233009DA29D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CA72EEAB233009DA29D /* FirebaseAnalytics */; };
+		CC723CAA2EEAB233009DA29D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CA92EEAB233009DA29D /* FirebaseAuth */; };
+		CC723CAC2EEAB233009DA29D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CAB2EEAB233009DA29D /* FirebaseCore */; };
+		CC723CAE2EEAB233009DA29D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CAD2EEAB233009DA29D /* FirebaseCrashlytics */; };
+		CC723CB02EEAB233009DA29D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CAF2EEAB233009DA29D /* FirebaseDatabase */; };
+		CC723CB22EEAB233009DA29D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CB12EEAB233009DA29D /* FirebaseFirestore */; };
+		CC723CB42EEAB233009DA29D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CB32EEAB233009DA29D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		47C3BC582EE14A3700864E5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47C3BC402EE14A3500864E5D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47C3BC472EE14A3500864E5D;
-			remoteInfo = RePlate;
-		};
-		47C3BC622EE14A3700864E5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47C3BC402EE14A3500864E5D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47C3BC472EE14A3500864E5D;
-			remoteInfo = RePlate;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		4763EEAA2EE3047E008A2CFB /* RePlate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RePlate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4763EEAB2EE30576008A2CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		4763EEB82EE4170F008A2CFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		47B3DC5A2EE418C200778CE1 /* RePlateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RePlateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		47B3DC5B2EE418C200778CE1 /* RePlateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RePlateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		47B3DC622EE41B4300778CE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CC3A42F12EE565FD00F80035 /* Replate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4763EEB52EE327A1008A2CFB /* View Section */ = {
+		CC3A42F32EE565FD00F80035 /* Replate */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "View Section";
+			path = Replate;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		47C3BC452EE14A3500864E5D /* Frameworks */ = {
+		CC3A42EE2EE565FD00F80035 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC542EE14A3700864E5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC5E2EE14A3700864E5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CC723CB02EEAB233009DA29D /* FirebaseDatabase in Frameworks */,
+				CC723CA82EEAB233009DA29D /* FirebaseAnalytics in Frameworks */,
+				CC723CB42EEAB233009DA29D /* FirebaseMessaging in Frameworks */,
+				CC723CAE2EEAB233009DA29D /* FirebaseCrashlytics in Frameworks */,
+				CC723CAC2EEAB233009DA29D /* FirebaseCore in Frameworks */,
+				CC723CAA2EEAB233009DA29D /* FirebaseAuth in Frameworks */,
+				CC723CB22EEAB233009DA29D /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47C3BC3F2EE14A3500864E5D = {
+		CC3A42E82EE565FD00F80035 = {
 			isa = PBXGroup;
 			children = (
-				4763EEB82EE4170F008A2CFB /* Assets.xcassets */,
-				4763EEAA2EE3047E008A2CFB /* RePlate.app */,
-				4763EEAB2EE30576008A2CFB /* AppDelegate.swift */,
-				47B3DC622EE41B4300778CE1 /* SceneDelegate.swift */,
-				4763EEB12EE308D6008A2CFB /* Launch Screen.storyboard */,
-				4763EEB52EE327A1008A2CFB /* View Section */,
-				47B3DC5A2EE418C200778CE1 /* RePlateTests.xctest */,
-				47B3DC5B2EE418C200778CE1 /* RePlateUITests.xctest */,
+				CC3A42F32EE565FD00F80035 /* Replate */,
+				CC3A42F22EE565FD00F80035 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		CC3A42F22EE565FD00F80035 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC3A42F12EE565FD00F80035 /* Replate.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		47C3BC472EE14A3500864E5D /* RePlate */ = {
+		CC3A42F02EE565FD00F80035 /* Replate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47C3BC6B2EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlate" */;
+			buildConfigurationList = CC3A43042EE565FE00F80035 /* Build configuration list for PBXNativeTarget "Replate" */;
 			buildPhases = (
-				47C3BC442EE14A3500864E5D /* Sources */,
-				47C3BC452EE14A3500864E5D /* Frameworks */,
-				47C3BC462EE14A3500864E5D /* Resources */,
+				CC3A42ED2EE565FD00F80035 /* Sources */,
+				CC3A42EE2EE565FD00F80035 /* Frameworks */,
+				CC3A42EF2EE565FD00F80035 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4763EEB52EE327A1008A2CFB /* View Section */,
+				CC3A42F32EE565FD00F80035 /* Replate */,
 			);
-			name = RePlate;
+			name = Replate;
 			packageProductDependencies = (
+				CC723CA72EEAB233009DA29D /* FirebaseAnalytics */,
+				CC723CA92EEAB233009DA29D /* FirebaseAuth */,
+				CC723CAB2EEAB233009DA29D /* FirebaseCore */,
+				CC723CAD2EEAB233009DA29D /* FirebaseCrashlytics */,
+				CC723CAF2EEAB233009DA29D /* FirebaseDatabase */,
+				CC723CB12EEAB233009DA29D /* FirebaseFirestore */,
+				CC723CB32EEAB233009DA29D /* FirebaseMessaging */,
 			);
-			productName = RePlate;
-			productReference = 4763EEAA2EE3047E008A2CFB /* RePlate.app */;
+			productName = Replate;
+			productReference = CC3A42F12EE565FD00F80035 /* Replate.app */;
 			productType = "com.apple.product-type.application";
-		};
-		47C3BC562EE14A3700864E5D /* RePlateTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47C3BC6E2EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlateTests" */;
-			buildPhases = (
-				47C3BC532EE14A3700864E5D /* Sources */,
-				47C3BC542EE14A3700864E5D /* Frameworks */,
-				47C3BC552EE14A3700864E5D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47C3BC592EE14A3700864E5D /* PBXTargetDependency */,
-			);
-			name = RePlateTests;
-			packageProductDependencies = (
-			);
-			productName = RePlateTests;
-			productReference = 47B3DC5A2EE418C200778CE1 /* RePlateTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		47C3BC602EE14A3700864E5D /* RePlateUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47C3BC712EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlateUITests" */;
-			buildPhases = (
-				47C3BC5D2EE14A3700864E5D /* Sources */,
-				47C3BC5E2EE14A3700864E5D /* Frameworks */,
-				47C3BC5F2EE14A3700864E5D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47C3BC632EE14A3700864E5D /* PBXTargetDependency */,
-			);
-			name = RePlateUITests;
-			packageProductDependencies = (
-			);
-			productName = RePlateUITests;
-			productReference = 47B3DC5B2EE418C200778CE1 /* RePlateUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		47C3BC402EE14A3500864E5D /* Project object */ = {
+		CC3A42E92EE565FD00F80035 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					47C3BC472EE14A3500864E5D = {
-						CreatedOnToolsVersion = 26.0.1;
-						LastSwiftMigration = 2600;
-					};
-					47C3BC562EE14A3700864E5D = {
-						CreatedOnToolsVersion = 26.0.1;
-						TestTargetID = 47C3BC472EE14A3500864E5D;
-					};
-					47C3BC602EE14A3700864E5D = {
-						CreatedOnToolsVersion = 26.0.1;
-						TestTargetID = 47C3BC472EE14A3500864E5D;
+					CC3A42F02EE565FD00F80035 = {
+						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
-			buildConfigurationList = 47C3BC432EE14A3500864E5D /* Build configuration list for PBXProject "RePlate" */;
+			buildConfigurationList = CC3A42EC2EE565FD00F80035 /* Build configuration list for PBXProject "RePlate" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 47C3BC3F2EE14A3500864E5D;
+			mainGroup = CC3A42E82EE565FD00F80035;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 47C3BC3F2EE14A3500864E5D;
+			productRefGroup = CC3A42F22EE565FD00F80035 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				47C3BC472EE14A3500864E5D /* RePlate */,
-				47C3BC562EE14A3700864E5D /* RePlateTests */,
-				47C3BC602EE14A3700864E5D /* RePlateUITests */,
+				CC3A42F02EE565FD00F80035 /* Replate */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		47C3BC462EE14A3500864E5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4763EEB22EE308D6008A2CFB /* Launch Screen.storyboard in Resources */,
-				4763EEB92EE4170F008A2CFB /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC552EE14A3700864E5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC5F2EE14A3700864E5D /* Resources */ = {
+		CC3A42EF2EE565FD00F80035 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -224,23 +142,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		47C3BC442EE14A3500864E5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4763EEAC2EE30576008A2CFB /* AppDelegate.swift in Sources */,
-				47B3DC632EE41B4300778CE1 /* SceneDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC532EE14A3700864E5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47C3BC5D2EE14A3700864E5D /* Sources */ = {
+		CC3A42ED2EE565FD00F80035 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,21 +151,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		47C3BC592EE14A3700864E5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47C3BC472EE14A3500864E5D /* RePlate */;
-			targetProxy = 47C3BC582EE14A3700864E5D /* PBXContainerItemProxy */;
-		};
-		47C3BC632EE14A3700864E5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47C3BC472EE14A3500864E5D /* RePlate */;
-			targetProxy = 47C3BC622EE14A3700864E5D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		47C3BC692EE14A3700864E5D /* Debug */ = {
+		CC3A43052EE565FE00F80035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Replate/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.polytechnic.Replate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC3A43062EE565FE00F80035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Replate/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.polytechnic.Replate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CC3A43072EE565FE00F80035 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -315,7 +258,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -326,7 +269,7 @@
 			};
 			name = Debug;
 		};
-		47C3BC6A2EE14A3700864E5D /* Release */ = {
+		CC3A43082EE565FE00F80035 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -372,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -382,201 +325,77 @@
 			};
 			name = Release;
 		};
-		47C3BC6C2EE14A3700864E5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
-				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlate;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		47C3BC6D2EE14A3700864E5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
-				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlate;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		47C3BC6F2EE14A3700864E5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RePlate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RePlate";
-			};
-			name = Debug;
-		};
-		47C3BC702EE14A3700864E5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RePlate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RePlate";
-			};
-			name = Release;
-		};
-		47C3BC722EE14A3700864E5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RePlate;
-			};
-			name = Debug;
-		};
-		47C3BC732EE14A3700864E5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Basem.RePlateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RePlate;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		47C3BC432EE14A3500864E5D /* Build configuration list for PBXProject "RePlate" */ = {
+		CC3A42EC2EE565FD00F80035 /* Build configuration list for PBXProject "RePlate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				47C3BC692EE14A3700864E5D /* Debug */,
-				47C3BC6A2EE14A3700864E5D /* Release */,
+				CC3A43072EE565FE00F80035 /* Debug */,
+				CC3A43082EE565FE00F80035 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		47C3BC6B2EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlate" */ = {
+		CC3A43042EE565FE00F80035 /* Build configuration list for PBXNativeTarget "Replate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				47C3BC6C2EE14A3700864E5D /* Debug */,
-				47C3BC6D2EE14A3700864E5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47C3BC6E2EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlateTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47C3BC6F2EE14A3700864E5D /* Debug */,
-				47C3BC702EE14A3700864E5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47C3BC712EE14A3700864E5D /* Build configuration list for PBXNativeTarget "RePlateUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47C3BC722EE14A3700864E5D /* Debug */,
-				47C3BC732EE14A3700864E5D /* Release */,
+				CC3A43052EE565FE00F80035 /* Debug */,
+				CC3A43062EE565FE00F80035 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC723CA72EEAB233009DA29D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CC723CA92EEAB233009DA29D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CC723CAB2EEAB233009DA29D /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		CC723CAD2EEAB233009DA29D /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		CC723CAF2EEAB233009DA29D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		CC723CB12EEAB233009DA29D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CC723CB32EEAB233009DA29D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC723CA62EEAB233009DA29D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 47C3BC402EE14A3500864E5D /* Project object */;
+	rootObject = CC3A42E92EE565FD00F80035 /* Project object */;
 }
