@@ -1,0 +1,99 @@
+{
+  "" : {
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/Replate-primary.dia",
+    "emit-module-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/Replate-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/Replate-primary-emit-module.dia",
+    "pch" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/Replate-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/Replate-primary.swiftdeps"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/AppDelegate .swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate .swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/AppDelegate ~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/HomeViewController.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/HomeViewController~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/LoginViewController.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/LoginViewController~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/ProfileAuthenticationViewController.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/ProfileAuthenticationViewController~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/SceneDelegate .swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate .swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SceneDelegate ~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/SelectTypeViewController.swift 21-01-49-154.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SelectTypeViewController.swift 21-01-49-154~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/SettingsViewController.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SettingsViewController~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/RePlate/SignUpViewController.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/SignUpViewController~partial.swiftmodule"
+  },
+  "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Desktop/RePlate/build/RePlate.build/Debug-iphonesimulator/Replate.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

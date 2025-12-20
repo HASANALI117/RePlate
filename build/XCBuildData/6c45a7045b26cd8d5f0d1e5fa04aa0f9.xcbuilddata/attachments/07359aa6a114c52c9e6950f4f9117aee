@@ -1,0 +1,4 @@
+module nanopb {
+umbrella "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/nanopb/spm_headers"
+export *
+}

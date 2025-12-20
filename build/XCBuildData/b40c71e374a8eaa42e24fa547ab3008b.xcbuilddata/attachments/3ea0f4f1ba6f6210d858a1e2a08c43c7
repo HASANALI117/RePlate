@@ -1,0 +1,4 @@
+module FirebaseRemoteConfigInternal {
+umbrella "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/FirebaseRemoteConfig/Sources/Public"
+export *
+}

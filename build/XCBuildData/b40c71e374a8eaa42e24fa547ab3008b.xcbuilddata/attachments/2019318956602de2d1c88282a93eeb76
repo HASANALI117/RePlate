@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Promises_Contents-primary.dia",
+    "emit-module-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Promises_Contents-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Promises_Contents-primary-emit-module.dia",
+    "pch" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Promises_Contents-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Promises_Contents-primary.swiftdeps"
+  },
+  "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/Contents.swift" : {
+    "const-values" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.d",
+    "diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.dia",
+    "index-unit-output-path" : "/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.o",
+    "llvm-bc" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.bc",
+    "object" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/promises/Promises.playground/build/Promises.build/Debug-iphonesimulator/Promises_Contents.build/Objects-normal/arm64/Contents~partial.swiftmodule"
+  }
+}

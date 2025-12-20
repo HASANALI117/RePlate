@@ -1,0 +1,4 @@
+module FirebasePerformance {
+umbrella header "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/FirebasePerformance/Sources/Public/FirebasePerformance/FirebasePerformance.h"
+export *
+}

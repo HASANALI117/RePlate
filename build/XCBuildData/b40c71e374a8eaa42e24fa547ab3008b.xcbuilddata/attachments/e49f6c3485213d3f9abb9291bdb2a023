@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAI-primary.dia",
+    "emit-module-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAI-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAI-primary-emit-module.dia",
+    "pch" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAI-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAI-primary.swiftdeps"
+  },
+  "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/FirebaseAI/Wrapper/Sources/FirebaseAIWrapper.swift" : {
+    "const-values" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.swiftconstvalues",
+    "dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.d",
+    "diagnostics" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.dia",
+    "index-unit-output-path" : "/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.o",
+    "llvm-bc" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.bc",
+    "object" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.o",
+    "swift-dependencies" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper.swiftdeps",
+    "swiftmodule" : "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/firebase-ios-sdk/build/Firebase.build/Debug-iphonesimulator/FirebaseAI.build/Objects-normal/arm64/FirebaseAIWrapper~partial.swiftmodule"
+  }
+}

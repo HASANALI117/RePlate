@@ -1,0 +1,4 @@
+module GoogleAppMeasurementCoreTarget {
+umbrella "/Users/basemelkhayat/Library/Developer/Xcode/DerivedData/RePlate-fpkoffwxuciitieaxxwuekmiockx/SourcePackages/checkouts/GoogleAppMeasurement/GoogleAppMeasurementCoreWrapper/include"
+export *
+}
