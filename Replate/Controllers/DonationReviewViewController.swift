@@ -243,12 +243,14 @@ class DonationReviewViewController: UIViewController {
     }
 
     private func showSuccessAndDismiss() {
-        let alert = UIAlertController(title: "Success!", message: "Your donation has been posted successfully.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+        let successVC = SuccessViewController(
+            title: "Donation Posted!",
+            message: "Your donation is now live and available for pickup"
+        ) { [weak self] in
             // Dismiss the entire navigation flow
             self?.navigationController?.dismiss(animated: true)
-        })
-        present(alert, animated: true)
+        }
+        present(successVC, animated: true)
     }
 }
 
