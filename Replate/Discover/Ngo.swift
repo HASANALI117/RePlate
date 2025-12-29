@@ -1,0 +1,17 @@
+//
+//  Ngo.swift
+//  Replate
+//
+//  Created by Abdulla on 29/12/2025.
+//
+
+struct Ngo {
+    var id: Int
+    var name: String
+    var description: String
+    var imageUrl: String
+    var location: String
+    var rating: Double
+    var totalDonations: Int
+    var verificationType: String?
+}
