@@ -12,29 +12,47 @@ final class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
+    
 
     private var allNgos: [Ngo] = [
-        Ngo(id: 1, name: "Food Aid Bahrain",
+        Ngo(
+            id: 1,
+            name: "Food Aid Bahrain",
             description: "We distribute meals daily to families in need.",
             imageUrl: "https://picsum.photos/200/200?1",
             location: "Manama",
             rating: 4.7,
-            totalDonations: 1200),
-
-        Ngo(id: 2, name: "Green Planet",
+            totalDonations: 1200,
+            focusAreas: ["Hunger Relief", "Meal Distribution"],
+            verificationType: "Government Verified",
+            reviews: nil
+        ),
+        Ngo(
+            id: 2,
+            name: "Green Planet",
             description: "Environmental protection and recycling programs.",
             imageUrl: "https://picsum.photos/200/200?2",
             location: "Riffa",
             rating: 4.2,
-            totalDonations: 860),
-
-        Ngo(id: 3, name: "Hope Shelter",
+            totalDonations: 860,
+            focusAreas: ["Community Support"],
+            verificationType: "Platform Verified",
+            reviews: nil
+        ),
+        Ngo(
+            id: 3,
+            name: "Hope Shelter",
             description: "Providing shelter and support services.",
             imageUrl: "https://picsum.photos/200/200?3",
             location: "Muharraq",
             rating: 4.9,
-            totalDonations: 2450)
+            totalDonations: 2450,
+            focusAreas: ["Emergency Food Aid", "Food Banks"],
+            verificationType: "Government Verified",
+            reviews: nil
+        )
     ]
+
 
     private var displayNgos: [Ngo] = []
 
@@ -46,7 +64,7 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        definesPresentationContext = true   // ✅ add this
+        definesPresentationContext = true
         modalPresentationStyle = .currentContext
 
         tableView.dataSource = self
@@ -65,33 +83,47 @@ final class SearchViewController: UIViewController {
 
         var result = allNgos
 
-        // 1) Filter by selected areas
+        // 1) Areas filter (location)
         if !selectedAreas.isEmpty {
             result = result.filter { selectedAreas.contains($0.location) }
         }
 
-        // 2) Search text
-        if !text.isEmpty {
-            result = result.filter {
-                $0.name.lowercased().contains(text) ||
-                $0.description.lowercased().contains(text) ||
-                $0.location.lowercased().contains(text)
+        // 2) Focus Areas filter (ANY match)
+        if !selectedFocusAreas.isEmpty {
+            let selected = Set(selectedFocusAreas.map { $0.rawValue })
+            result = result.filter { ngo in
+                let ngoAreas = Set(ngo.focusAreas )
+                return !ngoAreas.intersection(selected).isEmpty
             }
         }
 
-        // 3) selectedOption (only works if Ngo has fields for it)
-        // switch selectedOption { ... }
+        // 3) Verification option filter
+        if selectedOption != "All" {
+            result = result.filter { ($0.verificationType) == selectedOption }
+        }
+
+        // 4) Search text filter
+        if !text.isEmpty {
+            result = result.filter { ngo in
+                let areasText = (ngo.focusAreas).joined(separator: " ").lowercased()
+                return ngo.name.lowercased().contains(text)
+                    || ngo.description.lowercased().contains(text)
+                    || ngo.location.lowercased().contains(text)
+                    || areasText.contains(text)
+            }
+        }
 
         displayNgos = result
         tableView.reloadData()
     }
+
 
     @IBAction func filterTapped(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(
                withIdentifier: "SearchFilterViewController"
            ) as? SearchFilterViewController else { return }
 
-           // pass current filters
+
            vc.selectedAreas = selectedAreas
            vc.selectedFocusAreas = selectedFocusAreas
            vc.selectedOption = selectedOption
@@ -104,11 +136,10 @@ final class SearchViewController: UIViewController {
                self.applySearchAndFilters()
            }
 
-           // ✅ bottom sheet
            vc.modalPresentationStyle = .pageSheet
            if let sheet = vc.sheetPresentationController {
-               sheet.detents = [.medium(), .large()]   // sizes
-               sheet.prefersGrabberVisible = true      // small handle
+               sheet.detents = [.medium(), .large()]   
+               sheet.prefersGrabberVisible = true
                sheet.preferredCornerRadius = 20
            }
 
@@ -150,6 +181,8 @@ extension SearchViewController: UITableViewDataSource {
         return cell
     }
 }
+
+
 
 // MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {

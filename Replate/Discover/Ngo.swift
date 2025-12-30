@@ -13,5 +13,7 @@ struct Ngo {
     var location: String
     var rating: Double
     var totalDonations: Int
-    var verificationType: String?
+    var focusAreas: [String]
+    var verificationType: String
+    var reviews: [NgoRating]?
 }

@@ -45,6 +45,7 @@ final class SearchFilterViewController: UIViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         setupCheckboxes()
+        syncFocusButtonsUI()
 
     }
 
@@ -107,6 +108,20 @@ final class SearchFilterViewController: UIViewController {
         optionsButton.changesSelectionAsPrimaryAction = true
         optionsButton.setTitle(selectedOption, for: .normal)
     }
+    
+    private func syncFocusButtonsUI() {
+        let buttons = [option1Button, option2Button, option3Button, option4Button, option5Button, option6Button]
+
+        for (i, btn) in buttons.enumerated() {
+            guard let btn else { continue }
+            guard let area = FocusArea.allCases[safe: i] else { continue }
+
+            let checked = selectedFocusAreas.contains(area)
+            btn.setImage(UIImage(systemName: checked ? "checkmark.square.fill" : "square"), for: .normal)
+            btn.tintColor = .systemGray
+        }
+    }
+
 
     private func toggleArea(_ area: String) {
         if selectedAreas.contains(area) {
