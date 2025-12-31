@@ -69,6 +69,7 @@
 				D09B7F8D2EF8479800DA8B78 /* File.txt */,
 				D09B7F8F2EF8483B00DA8B78 /* MessagesListViewController.swift */,
 				CC3A42F32EE565FD00F80035 /* Replate */,
+				D058E0532F04DA730024BE2D /* Frameworks */,
 				CC3A42F22EE565FD00F80035 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +80,13 @@
 				CC3A42F12EE565FD00F80035 /* Replate.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D058E0532F04DA730024BE2D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
