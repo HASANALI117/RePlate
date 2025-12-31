@@ -77,13 +77,12 @@ final class NgoReviewsViewController: UIViewController {
        }
     
     func setUpNavigationItem() {
-        // Change back arrow image
           let arrow = UIImage(named: "back_button")
           navigationController?.navigationBar.backIndicatorImage = arrow
           navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrow
             navigationController?.navigationBar.tintColor = .black
-          // Back button title
-          let backItem = UIBarButtonItem(title: "Reviews", style: .plain, target: nil, action: nil)
+
+        let backItem = UIBarButtonItem(title: "Reviews", style: .plain, target: nil, action: nil)
           navigationItem.backBarButtonItem = backItem
             
           // Style text
