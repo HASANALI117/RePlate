@@ -8,6 +8,7 @@ Build/
 # User-specific Xcode settings
 *.xcuserdata/
 *.xcuserstate
+*.xcuserdatad
 *.moved-aside
 *.pbxuser
 !default.pbxuser

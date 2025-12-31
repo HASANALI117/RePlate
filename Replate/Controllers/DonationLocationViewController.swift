@@ -497,9 +497,9 @@ class PickupTimeButton: UIButton {
         case scheduled
     }
 
-    let buttonType: ButtonType
+    let btnType: ButtonType
     private let iconView: UIImageView
-    private let titleLabel: UILabel
+    private let titleTextLabel: UILabel
     private let timeLabel: UILabel
     private let radioButton: UIView
     private let radioButtonFill: UIView
@@ -511,9 +511,9 @@ class PickupTimeButton: UIButton {
     }
 
     init(type: ButtonType) {
-        self.buttonType = type
+        self.btnType = type
         self.iconView = UIImageView()
-        self.titleLabel = UILabel()
+        self.titleTextLabel = UILabel()
         self.timeLabel = UILabel()
         self.radioButton = UIView()
         self.radioButtonFill = UIView()
@@ -544,28 +544,28 @@ class PickupTimeButton: UIButton {
         radioButtonFill.translatesAutoresizingMaskIntoConstraints = false
 
         // Icon
-        iconView.image = UIImage(systemName: buttonType == .asap ? "clock.fill" : "calendar")
+        iconView.image = UIImage(systemName: btnType == .asap ? "clock.fill" : "calendar")
         iconView.tintColor = Constants.Colors.primaryGreen
         iconView.contentMode = .scaleAspectFit
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         // Title
-        titleLabel.text = buttonType == .asap ? "As soon as possible" : "Schedule a time"
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        titleLabel.textColor = .black
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleTextLabel.text = btnType == .asap ? "As soon as possible" : "Schedule a time"
+        titleTextLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        titleTextLabel.textColor = .black
+        titleTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
         // Time label (for scheduled)
         timeLabel.font = UIFont.systemFont(ofSize: 13)
         timeLabel.textColor = .systemGray
-        timeLabel.isHidden = buttonType == .asap
+        timeLabel.isHidden = btnType == .asap
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(radioButton)
         radioButton.addSubview(radioButtonFill)
         addSubview(iconView)
-        addSubview(titleLabel)
-        if buttonType == .scheduled {
+        addSubview(titleTextLabel)
+        if btnType == .scheduled {
             addSubview(timeLabel)
         }
 
@@ -585,14 +585,14 @@ class PickupTimeButton: UIButton {
             iconView.widthAnchor.constraint(equalToConstant: 20),
             iconView.heightAnchor.constraint(equalToConstant: 20),
 
-            titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleTextLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12),
+            titleTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
-        if buttonType == .scheduled {
+        if btnType == .scheduled {
             NSLayoutConstraint.activate([
-                timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
-                timeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
+                timeLabel.topAnchor.constraint(equalTo: titleTextLabel.bottomAnchor, constant: 2),
+                timeLabel.leadingAnchor.constraint(equalTo: titleTextLabel.leadingAnchor)
             ])
         }
 

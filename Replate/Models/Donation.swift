@@ -22,7 +22,7 @@ struct Donation: Codable {
     var location: LocationInfo
     var pickupTime: PickupTime
     var specialInstructions: String?
-    let createdAt: Date
+    var createdAt: Date
     var updatedAt: Date
     var status: DonationStatus
 

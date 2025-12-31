@@ -24,7 +24,7 @@
 		CC3A43032EE565FE00F80035 /* Exceptions for "Replate" folder in "Replate" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = CC3A42F02EE565FD00F80035 /* Replate */;
 		};
