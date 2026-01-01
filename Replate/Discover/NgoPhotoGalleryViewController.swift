@@ -11,22 +11,13 @@ class NgoPhotoGalleryViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var id:String!
-
-    private let imageUrls: [String] = [
-        "https://picsum.photos/300/300?1",
-        "https://picsum.photos/300/300?2",
-        "https://picsum.photos/300/300?3",
-        "https://picsum.photos/300/300?4",
-        "https://picsum.photos/300/300?5",
-        "https://picsum.photos/300/300?6",
-        "https://picsum.photos/300/300?7",
-        "https://picsum.photos/300/300?8",
-        "https://picsum.photos/300/300?9"
-    ]
+    var ngo:Ngo!
+    var imageUrls: [String]!
+    
     override func viewDidLoad() {
           super.viewDidLoad()
-
+            
+            imageUrls = ngo.galleryImages
           collectionView.dataSource = self
           collectionView.delegate = self
 
@@ -51,11 +42,10 @@ class NgoPhotoGalleryViewController: UIViewController{
           navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrow
             navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonTitle = "Community support"
-          // Back button title
-          let backItem = UIBarButtonItem(title: "Community support", style: .plain, target: nil, action: nil)
+
+        let backItem = UIBarButtonItem(title: "Community support", style: .plain, target: nil, action: nil)
           navigationItem.backBarButtonItem = backItem
             
-          // Style text
           let attributes: [NSAttributedString.Key: Any] = [
               .font: UIFont.systemFont(ofSize: 17, weight: .medium),
               .foregroundColor: UIColor.label

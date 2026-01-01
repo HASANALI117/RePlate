@@ -6,7 +6,7 @@
 //
 
 struct Ngo {
-    var id: Int
+    var id: String
     var name: String
     var description: String
     var imageUrl: String
@@ -15,5 +15,11 @@ struct Ngo {
     var totalDonations: Int
     var focusAreas: [String]
     var verificationType: String
-    var reviews: [NgoRating]?
+    var galleryImages: [String]
+    var reviews: [NgoRating]
+    var transparency: Double
+    var impact: Double
+    var reliability: Double
+    var registrationId: String
+    var registraionDate: String
 }

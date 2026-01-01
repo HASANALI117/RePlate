@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseFirestore
 final class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -14,44 +14,7 @@ final class SearchViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     
 
-    private var allNgos: [Ngo] = [
-        Ngo(
-            id: 1,
-            name: "Food Aid Bahrain",
-            description: "We distribute meals daily to families in need.",
-            imageUrl: "https://picsum.photos/200/200?1",
-            location: "Manama",
-            rating: 4.7,
-            totalDonations: 1200,
-            focusAreas: ["Hunger Relief", "Meal Distribution"],
-            verificationType: "Government Verified",
-            reviews: nil
-        ),
-        Ngo(
-            id: 2,
-            name: "Green Planet",
-            description: "Environmental protection and recycling programs.",
-            imageUrl: "https://picsum.photos/200/200?2",
-            location: "Riffa",
-            rating: 4.2,
-            totalDonations: 860,
-            focusAreas: ["Community Support"],
-            verificationType: "Platform Verified",
-            reviews: nil
-        ),
-        Ngo(
-            id: 3,
-            name: "Hope Shelter",
-            description: "Providing shelter and support services.",
-            imageUrl: "https://picsum.photos/200/200?3",
-            location: "Muharraq",
-            rating: 4.9,
-            totalDonations: 2450,
-            focusAreas: ["Emergency Food Aid", "Food Banks"],
-            verificationType: "Government Verified",
-            reviews: nil
-        )
-    ]
+    private var allNgos: [Ngo] = []
 
 
     private var displayNgos: [Ngo] = []
@@ -70,11 +33,16 @@ final class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
-
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundImage = UIImage()
+        tableView.separatorStyle = .none
         displayNgos = allNgos
-        applySearchAndFilters()
+        
+        
+        Task {
+            try await loadData()
+        }
     }
-
 
     private func applySearchAndFilters() {
         let text = (searchBar.text ?? "")
@@ -145,6 +113,42 @@ final class SearchViewController: UIViewController {
 
            present(vc, animated: true)
     }
+    
+    func loadData() async throws {
+        
+        allNgos = try await NgoController.shared.getAllNgo()
+        applySearchAndFilters()
+    }
+    
+    func ratingAttributedText(rate: Double) -> NSAttributedString {
+        let result = NSMutableAttributedString(
+            string: String(format: "%.1f ", rate),
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .medium)
+            ]
+        )
+
+        let imageName: String
+        switch rate {
+        case 4.0...5.0:
+            imageName = "great"
+        case 2.5..<4.0:
+            imageName = "fine"
+        default:
+            imageName = "bad"
+        }
+
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: imageName)
+
+        // Adjust image size & alignment
+        let imageSize: CGFloat = 14
+        attachment.bounds = CGRect(x: 0, y: -2, width: imageSize, height: imageSize)
+
+        result.append(NSAttributedString(attachment: attachment))
+        return result
+    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -167,9 +171,10 @@ extension SearchViewController: UITableViewDataSource {
         cell.ngoNameLabel.text = ngo.name
         cell.ngoDescriptionLabel.text = ngo.description
         cell.ngoLocationLabel.text = ngo.location
-        cell.ngoRatingLabel.text = String(format: "%.1f ★", ngo.rating)
+        cell.ngoRatingLabel.attributedText = ratingAttributedText(rate: ngo.rating)
         cell.totalDonations.text = "Donations: \(ngo.totalDonations)"
-
+      
+        
         cell.ngoImageView.image = UIImage(systemName: "photo")
         loadImage(urlString: ngo.imageUrl) { [weak tableView, weak cell] image in
             guard let tableView, let cell else { return }
@@ -180,6 +185,16 @@ extension SearchViewController: UITableViewDataSource {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NgoProfileViewController" {
+            if let vc  = segue.destination as? NgoProfileViewController,
+               let cell = sender as? UITableViewCell,
+                let indexPath = tableView.indexPath(for: cell) {
+                vc.ngo = displayNgos[indexPath.row]
+            }
+        }
+    }
 }
 
 
@@ -188,10 +203,9 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let ngo = displayNgos[indexPath.row]
-        print("Selected:", ngo.name)
+        performSegue(withIdentifier: "NgoProfileViewController", sender: tableView.cellForRow(at: indexPath))
     }
+    
 }
 
 // MARK: - UISearchBarDelegate

@@ -7,62 +7,81 @@
 
 import UIKit
 
-class OrganizationsListingViewController: UIViewController, UITableViewDelegate {
+final class OrganizationsListingViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
-    private let organizations: [Organization] = [
-        Organization(
-            id: "ORG-001",
-            name: "Sitra Community Kitchen",
-            location: "Sitra, Bahrain",
-            regestrationDate: "2019",
-            documents: ["Reg.pdf", "Bank.pdf", "Report.pdf"],
-            status: "Verified",
-            email: "info@sitra.org",
-            phone: "+973 3600 1234"
-        ),
-        Organization(
-            id: "ORG-002",
-            name: "Manama Food Bank",
-            location: "Manama, Bahrain",
-            regestrationDate: "2021",
-            documents: ["Reg.pdf", "Approval.pdf"],
-            status: "Pending",
-            email: "contact@manamafood.org",
-            phone: "+973 3300 9876"
-        )
-    ]
+    private var organizations: [Organization] = []
+    private var selectedOrganization: Organization?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            do { try await loadData() }
+            catch { print("❌ loadData:", error) }
+        }
+    }
+
+    private func loadData() async throws {
+        let data = try await NgoController.shared.getAllOrganizations()
+        await MainActor.run {
+            self.organizations = data
+            self.tableView.reloadData()
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OrganizationDetailsViewController" {
+            guard
+                let destination = segue.destination as? OrganizationDetailsViewController,
+                let org = selectedOrganization
+            else { return }
+
+            destination.organization = org
+        }
+    }
+
+    
+    @objc private func detailsButtonTapped(_ sender: UIButton) {
+        let index = sender.tag
+        selectedOrganization = organizations[index]
+        performSegue(withIdentifier: "OrganizationDetailsViewController", sender: self)
+    }
+
 }
 
 extension OrganizationsListingViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         organizations.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "OrganizationCell",
-            for: indexPath
-        ) as? OrganizationCell else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrganizationCell",
+                                                       for: indexPath) as? OrganizationCell else {
             return UITableViewCell()
         }
-
-        let org = organizations[indexPath.row]
-        cell.configure(with: org)
+        cell.configure(with: organizations[indexPath.row])
+        cell.detailsButton.tag = indexPath.row
+        cell.detailsButton.addTarget(self, action: #selector(detailsButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
 }
+
+extension OrganizationsListingViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedOrganization = organizations[indexPath.row]
+        performSegue(withIdentifier: "OrganizationDetailsViewController", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
+
 
 

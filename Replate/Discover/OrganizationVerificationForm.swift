@@ -13,20 +13,18 @@ final class OrganizationVerificationForm: UIViewController, UITextViewDelegate {
     @IBOutlet weak var commentTextField: UITextView!
     @IBOutlet weak var containerView: UIView!
 
-    // from previous page
     var id: String!
 
     private let options = ["Platform Verified", "Government Verified"]
     private var selectedOption: String?
 
-    private let placeholderText = "Write a comment (optional)..."
+    private let placeholderText = "Add any comments or notes about this verification..."
     private let placeholderColor = UIColor.systemGray3
     private let textColor = UIColor.label
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // container styling
         containerView.layer.cornerRadius = 8
         containerView.layer.borderColor = UIColor.systemGray4.cgColor
         containerView.layer.borderWidth = 1
@@ -41,7 +39,6 @@ final class OrganizationVerificationForm: UIViewController, UITextViewDelegate {
 
     // MARK: - Dropdown
     private func setupDropdown() {
-        // default title
         dropDownButton.setTitle("Select verification type", for: .normal)
 
         let actions = options.map { option in
@@ -80,32 +77,84 @@ final class OrganizationVerificationForm: UIViewController, UITextViewDelegate {
     }
 
     private func currentComment() -> String {
-        // return empty if it's placeholder
         if commentTextField.textColor == placeholderColor { return "" }
         return commentTextField.text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     // MARK: - Actions
     @IBAction func aprroveButtonTapped(_ sender: Any) {
-        // later: call your update status function using:
-        // id, selectedOption, currentComment()
+        guard let id else { return }
+        guard let verificationType = selectedOption else {
+            showAlert(
+                title: "Verification Required",
+                message: "Please select a verification type before approving the organization."
+            )
+            return
+        }
 
-        closeThisScreen()
+        Task {
+            do {
+                try await NgoController.shared.setOrganizationStatus(
+                    id: id,
+                    status: "Verified",
+                    content: currentComment(),
+                    verificationType: verificationType
+                )
+                await MainActor.run { self.closeThisScreen() }
+            } catch {
+                showAlert(
+                    title: "Error",
+                    message: "Failed to approve the organization. Please try again."
+                )
+            }
+        }
     }
 
-    @IBAction func RejectButtonTapped(_ sender: Any) {
-        // later: call your reject function using:
-        // id, currentComment()
 
-        closeThisScreen()
+    @IBAction func RejectButtonTapped(_ sender: Any) {
+        guard let id else { return }
+        guard let verificationType = selectedOption else {
+            showAlert(
+                title: "Verification Required",
+                message: "Please select a verification type before rejecting the organization."
+            )
+            return
+        }
+
+        Task {
+            do {
+                try await NgoController.shared.setOrganizationStatus(
+                    id: id,
+                    status: "Rejected",
+                    content: currentComment(),
+                    verificationType: verificationType
+                )
+                await MainActor.run { self.closeThisScreen() }
+            } catch {
+                showAlert(
+                    title: "Error",
+                    message: "Failed to reject the organization. Please try again."
+                )
+            }
+        }
     }
 
     private func closeThisScreen() {
-        if let nav = navigationController, nav.viewControllers.first != self {
-            nav.popViewController(animated: true)
+        if let nav = navigationController {
+            let count = nav.viewControllers.count
+            if count >= 3 {
+                nav.popToViewController(nav.viewControllers[count - 3], animated: true)
+            } else {
+                nav.popViewController(animated: true)
+            }
         } else {
             dismiss(animated: true)
         }
     }
 }
-

@@ -9,9 +9,11 @@ import Foundation
 
 struct NgoRating{
     
-    var id: String
     var userName: String
     var rate: Int
     var createdAt: Date
     var content: String
+    var transparency: Double
+    var impact: Double
+    var reliability: Double
 }

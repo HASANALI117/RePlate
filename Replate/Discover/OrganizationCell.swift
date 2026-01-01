@@ -15,6 +15,7 @@ final class OrganizationCell: UITableViewCell {
     @IBOutlet weak var totalDocumentsLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var containerView: UIStackView!
+    @IBOutlet weak var detailsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,12 +40,23 @@ final class OrganizationCell: UITableViewCell {
     }
 
     private func applyStatusStyle(status: String) {
-        if status.lowercased() == "verified" {
+        switch status.lowercased() {
+
+        case "verified":
             statusLabel.textColor = UIColor(red: 22/255, green: 101/255, blue: 52/255, alpha: 1)
             statusLabel.backgroundColor = UIColor(red: 220/255, green: 252/255, blue: 231/255, alpha: 1)
-        } else {
+
+        case "pending":
             statusLabel.textColor = UIColor(red: 133/255, green: 77/255, blue: 14/255, alpha: 1)
             statusLabel.backgroundColor = UIColor(red: 254/255, green: 249/255, blue: 195/255, alpha: 1)
+
+        case "rejected":
+            statusLabel.textColor = UIColor(red: 153/255, green: 27/255, blue: 27/255, alpha: 1)
+            statusLabel.backgroundColor = UIColor(red: 254/255, green: 226/255, blue: 226/255, alpha: 1)
+
+        default:
+            statusLabel.textColor = .label
+            statusLabel.backgroundColor = .systemGray5
         }
     }
 }

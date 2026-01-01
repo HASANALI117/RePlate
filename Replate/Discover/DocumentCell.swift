@@ -23,9 +23,9 @@ final class DocumentCell: UITableViewCell {
 
 
         containerView.backgroundColor = .systemBackground
-        containerView.layer.cornerRadius = 8
         containerView.layer.masksToBounds = true
 
+        containerView.layer.cornerRadius = 8
         containerView.layer.borderWidth = 1
         containerView.layer.borderColor = UIColor.systemGray4.cgColor
         

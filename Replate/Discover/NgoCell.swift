@@ -14,10 +14,16 @@ class NgoCell: UITableViewCell {
     @IBOutlet weak var ngoLocationLabel: UILabel!
     @IBOutlet weak var ngoRatingLabel: UILabel!
     @IBOutlet weak var totalDonations: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        ngoImageView.layer.cornerRadius = 36
+        ngoImageView.layer.cornerRadius = 30
+        containerView.layer.cornerRadius = 8
+        containerView.layer.borderWidth = 1
+        containerView.layer.borderColor = UIColor.systemGray4.cgColor
     }
 }
+
