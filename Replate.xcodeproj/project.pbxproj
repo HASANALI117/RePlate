@@ -14,12 +14,14 @@
 		CC723CB02EEAB233009DA29D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CAF2EEAB233009DA29D /* FirebaseDatabase */; };
 		CC723CB22EEAB233009DA29D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CB12EEAB233009DA29D /* FirebaseFirestore */; };
 		CC723CB42EEAB233009DA29D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CB32EEAB233009DA29D /* FirebaseMessaging */; };
+		D0306ED92F0689F300AA7A84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0306ED82F0689F300AA7A84 /* GoogleService-Info.plist */; };
 		D09B7F8E2EF8479800DA8B78 /* File.txt in Resources */ = {isa = PBXBuildFile; fileRef = D09B7F8D2EF8479800DA8B78 /* File.txt */; };
 		D09B7F902EF8483B00DA8B78 /* MessagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09B7F8F2EF8483B00DA8B78 /* MessagesListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CC3A42F12EE565FD00F80035 /* Replate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0306ED82F0689F300AA7A84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D09B7F8D2EF8479800DA8B78 /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
 		D09B7F8F2EF8483B00DA8B78 /* MessagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				CC3A42F32EE565FD00F80035 /* Replate */,
 				D058E0532F04DA730024BE2D /* Frameworks */,
 				CC3A42F22EE565FD00F80035 /* Products */,
+				D0306ED82F0689F300AA7A84 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0306ED92F0689F300AA7A84 /* GoogleService-Info.plist in Resources */,
 				D09B7F8E2EF8479800DA8B78 /* File.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
