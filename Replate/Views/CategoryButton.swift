@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class CategoryButton: UIButton {
+class CategoryBtn: UIButton {
     
     // MARK: - Inspectable Properties
     @IBInspectable var categoryName: String = "" {
@@ -33,7 +33,7 @@ class CategoryButton: UIButton {
     @IBInspectable var selectedBackgroundAlpha: CGFloat = 0.05
     
     // MARK: - Properties
-    var category: Donation.DonationCategory?
+    var category: Donation.DonationCategory!
     
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -81,6 +81,10 @@ class CategoryButton: UIButton {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupButton()
     }
     
@@ -98,8 +102,12 @@ class CategoryButton: UIButton {
         layer.borderColor = UIColor.systemGray5.cgColor
         
         // Set initial values
-        iconImageView.image = UIImage(systemName: iconName)
-        iconImageView.tintColor = iconColor
+        print("Loading icon with name: \(iconName)")
+        iconImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
+        if iconImageView.image == nil {
+                print("❌ Icon not found: \(iconName)")
+            }
+        iconImageView.tintColor = isSelected ? Constants.Colors.primaryGreen : .systemGray3
         label.text = categoryName
 
         addSubview(iconImageView)
@@ -129,10 +137,12 @@ class CategoryButton: UIButton {
             layer.borderColor = selectedBorderColor.cgColor
             layer.borderWidth = 2
             backgroundColor = selectedBorderColor.withAlphaComponent(selectedBackgroundAlpha)
+            iconImageView.tintColor = selectedBorderColor
         } else {
             layer.borderColor = UIColor.systemGray5.cgColor
             layer.borderWidth = 2
             backgroundColor = .white
+            iconImageView.tintColor = .systemGray3
         }
     }
 }

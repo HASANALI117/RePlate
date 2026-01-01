@@ -18,7 +18,7 @@ class PickupTimeButton: UIButton {
     // MARK: - Inspectable Properties
     @IBInspectable var isASAP: Bool = true {
         didSet {
-            buttonType = isASAP ? .asap : .scheduled
+            btnType = isASAP ? .asap : .scheduled
             updateContent()
         }
     }
@@ -30,9 +30,9 @@ class PickupTimeButton: UIButton {
     }
 
     // MARK: - Properties
-    var buttonType: ButtonType = .asap
+    var btnType: ButtonType = .asap
     private let iconView: UIImageView = UIImageView()
-    private let titleLabel: UILabel = UILabel()
+    private let titleTextLabel: UILabel = UILabel()
     private let timeLabel: UILabel = UILabel()
     private let radioButton: UIView = UIView()
     private let radioButtonFill: UIView = UIView()
@@ -45,7 +45,7 @@ class PickupTimeButton: UIButton {
 
     // MARK: - Initialization
     init(type: ButtonType) {
-        self.buttonType = type
+        self.btnType = type
         self.isASAP = (type == .asap)
         super.init(frame: .zero)
         setupButton()
@@ -90,9 +90,9 @@ class PickupTimeButton: UIButton {
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         // Title
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        titleLabel.textColor = .black
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleTextLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        titleTextLabel.textColor = .black
+        titleTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
         // Time label (for scheduled)
         timeLabel.font = UIFont.systemFont(ofSize: 13)
@@ -102,7 +102,7 @@ class PickupTimeButton: UIButton {
         addSubview(radioButton)
         radioButton.addSubview(radioButtonFill)
         addSubview(iconView)
-        addSubview(titleLabel)
+        addSubview(titleTextLabel)
         addSubview(timeLabel)
 
         NSLayoutConstraint.activate([
@@ -121,11 +121,11 @@ class PickupTimeButton: UIButton {
             iconView.widthAnchor.constraint(equalToConstant: 20),
             iconView.heightAnchor.constraint(equalToConstant: 20),
 
-            titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            titleTextLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12),
+            titleTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             
-            timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
-            timeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
+            timeLabel.topAnchor.constraint(equalTo: titleTextLabel.bottomAnchor, constant: 2),
+            timeLabel.leadingAnchor.constraint(equalTo: titleTextLabel.leadingAnchor)
         ])
 
         updateContent()
@@ -133,10 +133,10 @@ class PickupTimeButton: UIButton {
     }
     
     private func updateContent() {
-        iconView.image = UIImage(systemName: buttonType == .asap ? "clock.fill" : "calendar")
+        iconView.image = UIImage(systemName: btnType == .asap ? "clock.fill" : "calendar")
         iconView.tintColor = Constants.Colors.primaryGreen
-        titleLabel.text = buttonType == .asap ? "As soon as possible" : "Schedule a time"
-        timeLabel.isHidden = buttonType == .asap
+        titleTextLabel.text = btnType == .asap ? "As soon as possible" : "Schedule a time"
+        timeLabel.isHidden = btnType == .asap
     }
 
     private func updateAppearance() {

@@ -7,6 +7,32 @@
 
 import UIKit
 
+// MARK: - UIColor Hex Extension
+extension UIColor {
+    /// Initialize UIColor with a hex string, e.g. "#357B49" or "357B49"
+    convenience init?(hex: String) {
+        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Remove # if it exists
+        if hexString.hasPrefix("#") {
+            hexString.removeFirst()
+        }
+        
+        // Must be 6 characters
+        guard hexString.count == 6 else { return nil }
+        
+        // Convert hex to integer
+        var rgbValue: UInt64 = 0
+        Scanner(string: hexString).scanHexInt64(&rgbValue)
+        
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
+        
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+}
+
 struct Constants {
 
     // MARK: - App Configuration
@@ -32,9 +58,9 @@ struct Constants {
 
     // MARK: - Colors
     struct Colors {
-        static let primaryGreen = UIColor(red: 52/255, green: 168/255, blue: 83/255, alpha: 1.0)
-        static let lightGreen = UIColor(red: 52/255, green: 168/255, blue: 83/255, alpha: 0.1)
-        static let accentOrange = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1.0)
+        static let primaryGreen = UIColor(hex: "#357B49")!
+        static let lightGreen = UIColor(hex: "#34A853")!.withAlphaComponent(0.1)
+        static let accentOrange = UIColor(hex: "#FF9800")!
         static let textPrimary = UIColor.black
         static let textSecondary = UIColor.darkGray
         static let background = UIColor.white

@@ -10,77 +10,76 @@ import UIKit
 @IBDesignable
 class DonationProgressView: UIView {
     
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: UIView.noIntrinsicMetric, height: 40)
+    }
+
     // MARK: - Inspectable Properties
     @IBInspectable var currentStep: Int = 1 {
-        didSet {
-            updateProgress()
-        }
+        didSet { updateProgress() }
     }
-    
+
     @IBInspectable var totalSteps: Int = 4 {
-        didSet {
-            updateProgress()
-        }
+        didSet { updateProgress() }
     }
-    
+
     @IBInspectable var progressColor: UIColor = Constants.Colors.primaryGreen {
-        didSet {
-            progressBarFill.backgroundColor = progressColor
-        }
+        didSet { progressBarFill.backgroundColor = progressColor }
     }
-    
+
     // MARK: - UI Components
-    private let progressBarBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.systemGray5
-        view.layer.cornerRadius = 2
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let progressBarBackground = UIView()
+    private let progressBarFill = UIView()
+    private let stepLabel = UILabel()
 
-    private let progressBarFill: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Colors.primaryGreen
-        view.layer.cornerRadius = 2
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private var progressWidthConstraint: NSLayoutConstraint?
+    private var didSetupView = false
 
-    private let stepLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .systemGray
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private var progressWidthConstraint: NSLayoutConstraint!
-
-    // MARK: - Initialization
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupView()
+        commonInit()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setupView()
+        commonInit()
+        currentStep = 1
+        totalSteps = 4
         updateProgress()
     }
 
     // MARK: - Setup
-    private func setupView() {
+    private func commonInit() {
+        guard !didSetupView else { return }
+        didSetupView = true
+
+        backgroundColor = .clear
+
+        // Background bar
+        progressBarBackground.backgroundColor = .systemGray5
+        progressBarBackground.layer.cornerRadius = 2
+        progressBarBackground.translatesAutoresizingMaskIntoConstraints = false
+
+        // Fill bar
+        progressBarFill.backgroundColor = progressColor
+        progressBarFill.layer.cornerRadius = 2
+        progressBarFill.translatesAutoresizingMaskIntoConstraints = false
+
+        // Label
+        stepLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        stepLabel.textColor = .systemGray
+        stepLabel.textAlignment = .center
+        stepLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(stepLabel)
         addSubview(progressBarBackground)
         progressBarBackground.addSubview(progressBarFill)
-        addSubview(stepLabel)
-
-        progressWidthConstraint = progressBarFill.widthAnchor.constraint(equalTo: progressBarBackground.widthAnchor, multiplier: 0.25)
 
         NSLayoutConstraint.activate([
             stepLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -95,29 +94,34 @@ class DonationProgressView: UIView {
 
             progressBarFill.leadingAnchor.constraint(equalTo: progressBarBackground.leadingAnchor),
             progressBarFill.topAnchor.constraint(equalTo: progressBarBackground.topAnchor),
-            progressBarFill.bottomAnchor.constraint(equalTo: progressBarBackground.bottomAnchor),
-            progressWidthConstraint
+            progressBarFill.bottomAnchor.constraint(equalTo: progressBarBackground.bottomAnchor)
         ])
-        
+
+        progressWidthConstraint = progressBarFill.widthAnchor.constraint(equalTo: progressBarBackground.widthAnchor, multiplier: 0.25)
+        progressWidthConstraint?.isActive = true
+
         updateProgress()
     }
 
-    // MARK: - Public Methods
+    // MARK: - Progress
+    private func updateProgress() {
+        stepLabel.text = "Step \(currentStep) of \(totalSteps)"
+
+        let progress = CGFloat(currentStep) / CGFloat(max(totalSteps, 1))
+        progressWidthConstraint?.isActive = false
+        progressWidthConstraint = progressBarFill.widthAnchor.constraint(
+            equalTo: progressBarBackground.widthAnchor,
+            multiplier: min(max(progress, 0), 1)
+        )
+        progressWidthConstraint?.isActive = true
+
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+
+    // MARK: - Public API
     func setProgress(step: Int, totalSteps: Int) {
         self.currentStep = step
         self.totalSteps = totalSteps
-    }
-    
-    // MARK: - Private Methods
-    private func updateProgress() {
-        stepLabel.text = "Step \(currentStep) of \(totalSteps)"
-        let progress = CGFloat(currentStep) / CGFloat(totalSteps)
-        progressWidthConstraint?.isActive = false
-        progressWidthConstraint = progressBarFill.widthAnchor.constraint(equalTo: progressBarBackground.widthAnchor, multiplier: max(0, min(1, progress)))
-        progressWidthConstraint?.isActive = true
-
-        UIView.animate(withDuration: Constants.Animation.medium) {
-            self.layoutIfNeeded()
-        }
     }
 }
