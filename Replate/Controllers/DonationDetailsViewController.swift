@@ -22,9 +22,17 @@ class DonationDetailsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var photoUploadView: PhotoUploadView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var expiryTextField: UITextField!
     @IBOutlet weak var allergenStackView: UIStackView!
+
+    private let placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "e.g., Freshly baked this morning"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -111,6 +119,16 @@ class DonationDetailsViewController: UIViewController {
 
     private func setupTextView() {
         descriptionTextView.delegate = self
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+
+        // Add placeholder label programmatically
+        descriptionTextView.addSubview(placeholderLabel)
+        NSLayoutConstraint.activate([
+            placeholderLabel.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 12),
+            placeholderLabel.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 12),
+            placeholderLabel.trailingAnchor.constraint(equalTo: descriptionTextView.trailingAnchor, constant: -12)
+        ])
+
         placeholderLabel.isHidden = !descriptionTextView.text.isEmpty
     }
 
