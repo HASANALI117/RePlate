@@ -20,10 +20,7 @@ class DonationDetailsViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var photoButton: UIButton!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var cameraIconView: UIImageView!
-    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var photoUploadView: PhotoUploadView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var expiryTextField: UITextField!
@@ -46,6 +43,11 @@ class DonationDetailsViewController: UIViewController {
         // Setup progress bar
         progressBar.setProgress(step: 2, totalSteps: 4)
 
+        // Setup photo upload view
+        photoUploadView.onTap = { [weak self] in
+            self?.photoButtonTapped()
+        }
+
         // Setup allergen buttons
         setupAllergenButtons()
 
@@ -58,7 +60,6 @@ class DonationDetailsViewController: UIViewController {
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
 
         hideKeyboardWhenTappedAround()
     }
@@ -118,7 +119,7 @@ class DonationDetailsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc private func photoButtonTapped() {
+    private func photoButtonTapped() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
         configuration.filter = .images
@@ -204,10 +205,7 @@ extension DonationDetailsViewController: PHPickerViewControllerDelegate {
             if let image = object as? UIImage {
                 DispatchQueue.main.async {
                     self?.selectedImage = image
-                    self?.photoImageView.image = image
-                    self?.photoImageView.isHidden = false
-                    self?.cameraIconView.isHidden = true
-                    self?.addPhotoLabel.isHidden = true
+                    self?.photoUploadView.setImage(image)
                 }
             }
         }
