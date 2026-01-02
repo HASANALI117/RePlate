@@ -129,10 +129,16 @@ class DonationCategoryViewController: UIViewController {
         donation.quantity = quantity
         donation.quantityUnit = selectedUnit
 
-        // Navigate to next screen
-        let detailsVC = DonationDetailsViewController()
-        detailsVC.donation = donation
-        navigationController?.pushViewController(detailsVC, animated: true)
+        // Navigate to next screen via segue
+        performSegue(withIdentifier: "showDonationDetails", sender: self)
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDonationDetails",
+           let detailsVC = segue.destination as? DonationDetailsViewController {
+            detailsVC.donation = donation
+        }
     }
 
     // MARK: - Helper
