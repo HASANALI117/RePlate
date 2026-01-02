@@ -15,163 +15,19 @@ class DonationDetailsViewController: UIViewController {
     private var selectedImage: UIImage?
     private var selectedAllergens: Set<Donation.AllergenInfo> = []
 
-    // MARK: - UI Components
-    private let scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.showsVerticalScrollIndicator = true
-        return scroll
-    }()
-
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let progressBar: DonationProgressView = {
-        let view = DonationProgressView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let backButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = Constants.Colors.primaryGreen
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        button.setTitleColor(Constants.Colors.primaryGreen, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Add more details"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let photoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Photo"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let photoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.systemGray6
-        button.layer.cornerRadius = 12
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
-        imageView.isHidden = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private let cameraIconView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "camera.circle.fill")
-        imageView.tintColor = Constants.Colors.primaryGreen
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private let addPhotoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Add Photo"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = Constants.Colors.primaryGreen
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Description"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let descriptionTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.backgroundColor = UIColor.systemGray6
-        textView.layer.cornerRadius = 8
-        textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
-
-    private let placeholderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "e.g., Freshly baked this morning"
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .systemGray3
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let expiryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Expires / Use By"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let expiryTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "mm/dd/yyyy"
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.borderStyle = .none
-        textField.backgroundColor = UIColor.systemGray6
-        textField.layer.cornerRadius = 8
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 0))
-        textField.leftViewMode = .always
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private let allergenLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Allergen Information"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let allergenStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 12
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
+    // MARK: - IBOutlets
+    @IBOutlet weak var progressBar: DonationProgressView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var cameraIconView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var expiryTextField: UITextField!
+    @IBOutlet weak var allergenStackView: UIStackView!
 
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -186,38 +42,6 @@ class DonationDetailsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupActions()
-        setupDatePicker()
-        setupTextView()
-        hideKeyboardWhenTappedAround()
-    }
-
-    // MARK: - UI Setup
-    private func setupUI() {
-        view.backgroundColor = .white
-        navigationController?.setNavigationBarHidden(true, animated: false)
-
-        // Add subviews
-        view.addSubview(progressBar)
-        view.addSubview(backButton)
-        view.addSubview(nextButton)
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(photoLabel)
-        contentView.addSubview(photoButton)
-        photoButton.addSubview(photoImageView)
-        photoButton.addSubview(cameraIconView)
-        photoButton.addSubview(addPhotoLabel)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(descriptionTextView)
-        descriptionTextView.addSubview(placeholderLabel)
-        contentView.addSubview(expiryLabel)
-        contentView.addSubview(expiryTextField)
-        contentView.addSubview(allergenLabel)
-        contentView.addSubview(allergenStackView)
 
         // Setup progress bar
         progressBar.setProgress(step: 2, totalSteps: 4)
@@ -225,104 +49,21 @@ class DonationDetailsViewController: UIViewController {
         // Setup allergen buttons
         setupAllergenButtons()
 
-        // Layout
-        NSLayoutConstraint.activate([
-            // Progress bar
-            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            progressBar.heightAnchor.constraint(equalToConstant: 30),
+        // Setup date picker
+        setupDatePicker()
 
-            // Back button
-            backButton.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
+        // Setup text view
+        setupTextView()
 
-            // Next button
-            nextButton.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        // Setup actions
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
 
-            // Scroll view
-            scrollView.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 16),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-            // Content view
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
-            // Title
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-
-            // Photo label
-            photoLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-            photoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Photo button
-            photoButton.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
-            photoButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            photoButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            photoButton.heightAnchor.constraint(equalToConstant: 160),
-
-            // Photo image view
-            photoImageView.topAnchor.constraint(equalTo: photoButton.topAnchor),
-            photoImageView.leadingAnchor.constraint(equalTo: photoButton.leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: photoButton.trailingAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: photoButton.bottomAnchor),
-
-            // Camera icon
-            cameraIconView.centerXAnchor.constraint(equalTo: photoButton.centerXAnchor),
-            cameraIconView.centerYAnchor.constraint(equalTo: photoButton.centerYAnchor, constant: -15),
-            cameraIconView.widthAnchor.constraint(equalToConstant: 50),
-            cameraIconView.heightAnchor.constraint(equalToConstant: 50),
-
-            // Add photo label
-            addPhotoLabel.topAnchor.constraint(equalTo: cameraIconView.bottomAnchor, constant: 8),
-            addPhotoLabel.centerXAnchor.constraint(equalTo: photoButton.centerXAnchor),
-
-            // Description label
-            descriptionLabel.topAnchor.constraint(equalTo: photoButton.bottomAnchor, constant: 24),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Description text view
-            descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            descriptionTextView.heightAnchor.constraint(equalToConstant: 100),
-
-            // Placeholder
-            placeholderLabel.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 12),
-            placeholderLabel.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 12),
-
-            // Expiry label
-            expiryLabel.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 24),
-            expiryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Expiry text field
-            expiryTextField.topAnchor.constraint(equalTo: expiryLabel.bottomAnchor, constant: 8),
-            expiryTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            expiryTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            expiryTextField.heightAnchor.constraint(equalToConstant: 50),
-
-            // Allergen label
-            allergenLabel.topAnchor.constraint(equalTo: expiryTextField.bottomAnchor, constant: 24),
-            allergenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Allergen stack view
-            allergenStackView.topAnchor.constraint(equalTo: allergenLabel.bottomAnchor, constant: 12),
-            allergenStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            allergenStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            allergenStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
-        ])
+        hideKeyboardWhenTappedAround()
     }
 
+    // MARK: - Setup
     private func setupAllergenButtons() {
         // Create rows of allergen buttons
         let row1 = UIStackView()
@@ -373,12 +114,6 @@ class DonationDetailsViewController: UIViewController {
     }
 
     // MARK: - Actions
-    private func setupActions() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
-    }
-
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -395,9 +130,9 @@ class DonationDetailsViewController: UIViewController {
 
     @objc private func allergenButtonTapped(_ sender: AllergenButton) {
         sender.isSelected.toggle()
-        
+
         guard let allergen = sender.allergen else { return }
-        
+
         if sender.isSelected {
             selectedAllergens.insert(allergen)
         } else {
@@ -431,10 +166,23 @@ class DonationDetailsViewController: UIViewController {
         // TODO: Upload photo to Firebase Storage and save URL
         // For now, we'll just proceed
 
-        // Navigate to next screen
-        let locationVC = DonationLocationViewController()
-        locationVC.donation = donation
-        navigationController?.pushViewController(locationVC, animated: true)
+        // Navigate to next screen via segue
+        performSegue(withIdentifier: "showDonationLocation", sender: self)
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDonationLocation",
+           let locationVC = segue.destination as? DonationLocationViewController {
+            locationVC.donation = donation
+        }
+    }
+
+    // MARK: - Helper
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 

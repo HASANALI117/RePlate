@@ -15,229 +15,27 @@ class DonationLocationViewController: UIViewController {
     var donation: Donation!
     private let locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
-
-    // MARK: - UI Components
-    private let scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.showsVerticalScrollIndicator = true
-        return scroll
-    }()
-
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let progressBar: DonationProgressView = {
-        let view = DonationProgressView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let backButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = Constants.Colors.primaryGreen
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        button.setTitleColor(Constants.Colors.primaryGreen, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Where & When to Pickup?"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let mapView: MKMapView = {
-        let map = MKMapView()
-        map.layer.cornerRadius = 12
-        map.clipsToBounds = true
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
-    }()
-
-    private let locationPinView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Colors.primaryGreen
-        view.layer.cornerRadius = 30
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private let pinIconView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "mappin")
-        imageView.tintColor = .white
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private let locationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Location"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let useCurrentLocationButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.systemGray4.cgColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let locationIconView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "location.circle.fill")
-        imageView.tintColor = Constants.Colors.primaryGreen
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private let useCurrentLocationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Use Current Location"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let manualAddressLabel: UILabel = {
-        let label = UILabel()
-        label.text = "or enter address manually"
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = .systemGray
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let addressTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "123 Main Street, San Francisco, CA 94102"
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.borderStyle = .none
-        textField.backgroundColor = UIColor.systemGray6
-        textField.layer.cornerRadius = 8
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 0))
-        textField.leftViewMode = .always
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private let pickupTimeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Pickup Time"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let asapButton: PickupTimeButton = {
-        let button = PickupTimeButton(type: .asap)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let scheduleButton: PickupTimeButton = {
-        let button = PickupTimeButton(type: .scheduled)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    private let specialInstructionsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Special Instructions"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let specialInstructionsTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.backgroundColor = UIColor.systemGray6
-        textView.layer.cornerRadius = 8
-        textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
-
-    private let instructionsPlaceholderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "e.g., Ring the bell twice, Use side entrance"
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .systemGray3
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
     private var selectedPickupTime: Donation.PickupTime = .asap
+
+    // MARK: - IBOutlets
+    @IBOutlet weak var progressBar: DonationProgressView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var locationPinView: UIView!
+    @IBOutlet weak var useCurrentLocationButton: UIButton!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var asapButton: PickupTimeButton!
+    @IBOutlet weak var scheduleButton: PickupTimeButton!
+    @IBOutlet weak var specialInstructionsTextView: UITextView!
+    @IBOutlet weak var instructionsPlaceholderLabel: UILabel!
+
     private let datePicker = UIDatePicker()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupActions()
-        setupLocationManager()
-        setupDatePicker()
-        setupTextView()
-        hideKeyboardWhenTappedAround()
-    }
-
-    // MARK: - UI Setup
-    private func setupUI() {
-        view.backgroundColor = .white
-        navigationController?.setNavigationBarHidden(true, animated: false)
-
-        // Add subviews
-        view.addSubview(progressBar)
-        view.addSubview(backButton)
-        view.addSubview(nextButton)
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(mapView)
-        mapView.addSubview(locationPinView)
-        locationPinView.addSubview(pinIconView)
-        contentView.addSubview(locationLabel)
-        contentView.addSubview(useCurrentLocationButton)
-        useCurrentLocationButton.addSubview(locationIconView)
-        useCurrentLocationButton.addSubview(useCurrentLocationLabel)
-        contentView.addSubview(manualAddressLabel)
-        contentView.addSubview(addressTextField)
-        contentView.addSubview(pickupTimeLabel)
-        contentView.addSubview(asapButton)
-        contentView.addSubview(scheduleButton)
-        contentView.addSubview(specialInstructionsLabel)
-        contentView.addSubview(specialInstructionsTextView)
-        specialInstructionsTextView.addSubview(instructionsPlaceholderLabel)
 
         // Setup progress bar
         progressBar.setProgress(step: 3, totalSteps: 4)
@@ -245,124 +43,26 @@ class DonationLocationViewController: UIViewController {
         // Select ASAP by default
         asapButton.isSelected = true
 
-        // Layout
-        NSLayoutConstraint.activate([
-            // Progress bar
-            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            progressBar.heightAnchor.constraint(equalToConstant: 30),
+        // Setup location manager
+        setupLocationManager()
 
-            // Back button
-            backButton.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
+        // Setup date picker
+        setupDatePicker()
 
-            // Next button
-            nextButton.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        // Setup text view
+        setupTextView()
 
-            // Scroll view
-            scrollView.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 16),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        // Setup actions
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        useCurrentLocationButton.addTarget(self, action: #selector(useCurrentLocationTapped), for: .touchUpInside)
+        asapButton.addTarget(self, action: #selector(asapButtonTapped), for: .touchUpInside)
+        scheduleButton.addTarget(self, action: #selector(scheduleButtonTapped), for: .touchUpInside)
 
-            // Content view
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
-            // Title
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-
-            // Map view
-            mapView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-            mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            mapView.heightAnchor.constraint(equalToConstant: 200),
-
-            // Location pin
-            locationPinView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-            locationPinView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
-            locationPinView.widthAnchor.constraint(equalToConstant: 60),
-            locationPinView.heightAnchor.constraint(equalToConstant: 60),
-
-            // Pin icon
-            pinIconView.centerXAnchor.constraint(equalTo: locationPinView.centerXAnchor),
-            pinIconView.centerYAnchor.constraint(equalTo: locationPinView.centerYAnchor),
-            pinIconView.widthAnchor.constraint(equalToConstant: 30),
-            pinIconView.heightAnchor.constraint(equalToConstant: 30),
-
-            // Location label
-            locationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 24),
-            locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Use current location button
-            useCurrentLocationButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 12),
-            useCurrentLocationButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            useCurrentLocationButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            useCurrentLocationButton.heightAnchor.constraint(equalToConstant: 50),
-
-            // Location icon
-            locationIconView.leadingAnchor.constraint(equalTo: useCurrentLocationButton.leadingAnchor, constant: 12),
-            locationIconView.centerYAnchor.constraint(equalTo: useCurrentLocationButton.centerYAnchor),
-            locationIconView.widthAnchor.constraint(equalToConstant: 24),
-            locationIconView.heightAnchor.constraint(equalToConstant: 24),
-
-            // Use current location label
-            useCurrentLocationLabel.leadingAnchor.constraint(equalTo: locationIconView.trailingAnchor, constant: 12),
-            useCurrentLocationLabel.centerYAnchor.constraint(equalTo: useCurrentLocationButton.centerYAnchor),
-
-            // Manual address label
-            manualAddressLabel.topAnchor.constraint(equalTo: useCurrentLocationButton.bottomAnchor, constant: 16),
-            manualAddressLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
-            // Address text field
-            addressTextField.topAnchor.constraint(equalTo: manualAddressLabel.bottomAnchor, constant: 12),
-            addressTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            addressTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            addressTextField.heightAnchor.constraint(equalToConstant: 50),
-
-            // Pickup time label
-            pickupTimeLabel.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 24),
-            pickupTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // ASAP button
-            asapButton.topAnchor.constraint(equalTo: pickupTimeLabel.bottomAnchor, constant: 12),
-            asapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            asapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            asapButton.heightAnchor.constraint(equalToConstant: 50),
-
-            // Schedule button
-            scheduleButton.topAnchor.constraint(equalTo: asapButton.bottomAnchor, constant: 12),
-            scheduleButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            scheduleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            scheduleButton.heightAnchor.constraint(equalToConstant: 50),
-
-            // Special instructions label
-            specialInstructionsLabel.topAnchor.constraint(equalTo: scheduleButton.bottomAnchor, constant: 24),
-            specialInstructionsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-
-            // Special instructions text view
-            specialInstructionsTextView.topAnchor.constraint(equalTo: specialInstructionsLabel.bottomAnchor, constant: 8),
-            specialInstructionsTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            specialInstructionsTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
-            specialInstructionsTextView.heightAnchor.constraint(equalToConstant: 80),
-            specialInstructionsTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
-
-            // Instructions placeholder
-            instructionsPlaceholderLabel.topAnchor.constraint(equalTo: specialInstructionsTextView.topAnchor, constant: 12),
-            instructionsPlaceholderLabel.leadingAnchor.constraint(equalTo: specialInstructionsTextView.leadingAnchor, constant: 12),
-            instructionsPlaceholderLabel.trailingAnchor.constraint(equalTo: specialInstructionsTextView.trailingAnchor, constant: -12)
-        ])
+        hideKeyboardWhenTappedAround()
     }
 
+    // MARK: - Setup
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -380,14 +80,6 @@ class DonationLocationViewController: UIViewController {
     }
 
     // MARK: - Actions
-    private func setupActions() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        useCurrentLocationButton.addTarget(self, action: #selector(useCurrentLocationTapped), for: .touchUpInside)
-        asapButton.addTarget(self, action: #selector(asapButtonTapped), for: .touchUpInside)
-        scheduleButton.addTarget(self, action: #selector(scheduleButtonTapped), for: .touchUpInside)
-    }
-
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -458,16 +150,29 @@ class DonationLocationViewController: UIViewController {
         donation.pickupTime = selectedPickupTime
         donation.specialInstructions = specialInstructionsTextView.text.isEmpty ? nil : specialInstructionsTextView.text
 
-        // Navigate to review screen
-        let reviewVC = DonationReviewViewController()
-        reviewVC.donation = donation
-        navigationController?.pushViewController(reviewVC, animated: true)
+        // Navigate to review screen via segue
+        performSegue(withIdentifier: "showDonationReview", sender: self)
     }
 
     private func updateMapLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         mapView.setRegion(region, animated: true)
         currentLocation = location
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDonationReview",
+           let reviewVC = segue.destination as? DonationReviewViewController {
+            reviewVC.donation = donation
+        }
+    }
+
+    // MARK: - Helper
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
