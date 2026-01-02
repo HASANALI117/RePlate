@@ -225,39 +225,3 @@ extension BrowseDonationsViewController: UITableViewDelegate, UITableViewDataSou
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-
-// MARK: - Filter Button
-class FilterButton: UIButton {
-    override var isSelected: Bool {
-        didSet {
-            updateAppearance()
-        }
-    }
-
-    init(title: String) {
-        super.init(frame: .zero)
-        setTitle(title, for: .normal)
-        setupButton()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupButton() {
-        titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        layer.cornerRadius = 20
-        contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-        updateAppearance()
-    }
-
-    private func updateAppearance() {
-        if isSelected {
-            backgroundColor = Constants.Colors.primaryGreen
-            setTitleColor(.white, for: .normal)
-        } else {
-            backgroundColor = UIColor.systemGray6
-            setTitleColor(.darkGray, for: .normal)
-        }
-    }
-}

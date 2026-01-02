@@ -395,11 +395,13 @@ class DonationDetailsViewController: UIViewController {
 
     @objc private func allergenButtonTapped(_ sender: AllergenButton) {
         sender.isSelected.toggle()
-
+        
+        guard let allergen = sender.allergen else { return }
+        
         if sender.isSelected {
-            selectedAllergens.insert(sender.allergen)
+            selectedAllergens.insert(allergen)
         } else {
-            selectedAllergens.remove(sender.allergen)
+            selectedAllergens.remove(allergen)
         }
     }
 
@@ -460,67 +462,6 @@ extension DonationDetailsViewController: PHPickerViewControllerDelegate {
                     self?.addPhotoLabel.isHidden = true
                 }
             }
-        }
-    }
-}
-
-// MARK: - Allergen Button
-class AllergenButton: UIButton {
-    let allergen: Donation.AllergenInfo
-
-    override var isSelected: Bool {
-        didSet {
-            updateAppearance()
-        }
-    }
-
-    init(allergen: Donation.AllergenInfo) {
-        self.allergen = allergen
-        super.init(frame: .zero)
-        setupButton()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupButton() {
-        setTitle(allergen.displayName, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        titleLabel?.numberOfLines = 2
-        titleLabel?.textAlignment = .center
-        titleLabel?.adjustsFontSizeToFitWidth = true
-        titleLabel?.minimumScaleFactor = 0.8
-        layer.cornerRadius = 8
-        heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        updateAppearance()
-    }
-
-    private func updateAppearance() {
-        if isSelected {
-            backgroundColor = getColorForAllergen()
-            setTitleColor(.white, for: .normal)
-        } else {
-            backgroundColor = UIColor.systemGray6
-            setTitleColor(.darkGray, for: .normal)
-        }
-    }
-
-    private func getColorForAllergen() -> UIColor {
-        switch allergen {
-        case .containsNuts:
-            return UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1.0)
-        case .glutenFree:
-            return UIColor(red: 52/255, green: 168/255, blue: 83/255, alpha: 1.0)
-        case .dairyFree:
-            return UIColor(red: 33/255, green: 150/255, blue: 243/255, alpha: 1.0)
-        case .vegan:
-            return UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0)
-        case .containsShellfish:
-            return UIColor(red: 255/255, green: 87/255, blue: 34/255, alpha: 1.0)
-        case .eggFree:
-            return UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0)
         }
     }
 }
