@@ -22,14 +22,19 @@ class DonationLocationViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var locationPinView: UIView!
-    @IBOutlet weak var useCurrentLocationButton: UIButton!
-    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var locationSelectionView: LocationSelectionView!
     @IBOutlet weak var asapButton: PickupTimeButton!
     @IBOutlet weak var scheduleButton: PickupTimeButton!
     @IBOutlet weak var specialInstructionsTextView: UITextView!
-    @IBOutlet weak var instructionsPlaceholderLabel: UILabel!
+
+    private let instructionsPlaceholderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "e.g., Ring the bell twice, Use side entrance"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     private let datePicker = UIDatePicker()
 
@@ -43,6 +48,11 @@ class DonationLocationViewController: UIViewController {
         // Select ASAP by default
         asapButton.isSelected = true
 
+        // Setup location selection view
+        locationSelectionView.onUseCurrentLocation = { [weak self] in
+            self?.useCurrentLocationTapped()
+        }
+
         // Setup location manager
         setupLocationManager()
 
@@ -55,7 +65,6 @@ class DonationLocationViewController: UIViewController {
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        useCurrentLocationButton.addTarget(self, action: #selector(useCurrentLocationTapped), for: .touchUpInside)
         asapButton.addTarget(self, action: #selector(asapButtonTapped), for: .touchUpInside)
         scheduleButton.addTarget(self, action: #selector(scheduleButtonTapped), for: .touchUpInside)
 
@@ -76,6 +85,16 @@ class DonationLocationViewController: UIViewController {
 
     private func setupTextView() {
         specialInstructionsTextView.delegate = self
+        specialInstructionsTextView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+
+        // Add placeholder label programmatically
+        specialInstructionsTextView.addSubview(instructionsPlaceholderLabel)
+        NSLayoutConstraint.activate([
+            instructionsPlaceholderLabel.topAnchor.constraint(equalTo: specialInstructionsTextView.topAnchor, constant: 12),
+            instructionsPlaceholderLabel.leadingAnchor.constraint(equalTo: specialInstructionsTextView.leadingAnchor, constant: 12),
+            instructionsPlaceholderLabel.trailingAnchor.constraint(equalTo: specialInstructionsTextView.trailingAnchor, constant: -12)
+        ])
+
         instructionsPlaceholderLabel.isHidden = !specialInstructionsTextView.text.isEmpty
     }
 
@@ -84,7 +103,7 @@ class DonationLocationViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc private func useCurrentLocationTapped() {
+    private func useCurrentLocationTapped() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
     }
@@ -132,8 +151,8 @@ class DonationLocationViewController: UIViewController {
     @objc private func nextButtonTapped() {
         // Validate location
         var address = ""
-        if !addressTextField.text!.isEmpty {
-            address = addressTextField.text!
+        if let addressText = locationSelectionView.getAddressText(), !addressText.isEmpty {
+            address = addressText
         } else if let location = currentLocation {
             // Reverse geocode if using current location
             address = "Current Location"
@@ -155,8 +174,7 @@ class DonationLocationViewController: UIViewController {
     }
 
     private func updateMapLocation(_ location: CLLocation) {
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        mapView.setRegion(region, animated: true)
+        locationSelectionView.updateLocation(location)
         currentLocation = location
     }
 
