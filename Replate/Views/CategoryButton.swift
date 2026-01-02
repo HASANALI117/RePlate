@@ -102,11 +102,7 @@ class CategoryBtn: UIButton {
         layer.borderColor = UIColor.systemGray5.cgColor
         
         // Set initial values
-        print("Loading icon with name: \(iconName)")
         iconImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
-        if iconImageView.image == nil {
-                print("❌ Icon not found: \(iconName)")
-            }
         iconImageView.tintColor = isSelected ? Constants.Colors.primaryGreen : .systemGray3
         label.text = categoryName
 
@@ -135,12 +131,10 @@ class CategoryBtn: UIButton {
     private func updateAppearance() {
         if isSelected {
             layer.borderColor = selectedBorderColor.cgColor
-            layer.borderWidth = 2
             backgroundColor = selectedBorderColor.withAlphaComponent(selectedBackgroundAlpha)
             iconImageView.tintColor = selectedBorderColor
         } else {
             layer.borderColor = UIColor.systemGray5.cgColor
-            layer.borderWidth = 2
             backgroundColor = .white
             iconImageView.tintColor = .systemGray3
         }
