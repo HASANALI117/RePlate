@@ -22,6 +22,7 @@ class DonationLocationViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var locationSelectionView: LocationSelectionView!
+    @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var specialInstructionsTextView: UITextView!
 
     private let instructionsPlaceholderLabel: UILabel = {
@@ -39,11 +40,6 @@ class DonationLocationViewController: UIViewController {
 
         // Setup progress bar
         progressBar.setProgress(step: 3, totalSteps: 4)
-
-        // Setup location selection view
-        locationSelectionView.onUseCurrentLocation = { [weak self] in
-            self?.useCurrentLocationTapped()
-        }
 
         // Setup location manager
         setupLocationManager()
@@ -84,29 +80,15 @@ class DonationLocationViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    private func useCurrentLocationTapped() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-    }
-
     @objc private func nextButtonTapped() {
         // Validate location
-        var address = ""
-        if let addressText = locationSelectionView.getAddressText(), !addressText.isEmpty {
-            address = addressText
-        } else if let location = currentLocation {
-            // Reverse geocode if using current location
-            address = "Current Location"
-            donation.location.latitude = location.coordinate.latitude
-            donation.location.longitude = location.coordinate.longitude
-            donation.location.useCurrentLocation = true
-        } else {
-            showAlert(title: "Missing Location", message: "Please select or enter a location")
+        guard let addressText = addressTextField.text, !addressText.isEmpty else {
+            showAlert(title: "Missing Location", message: "Please enter a pickup location")
             return
         }
 
         // Update donation object
-        donation.location.address = address
+        donation.location.address = addressText
         donation.pickupTime = .asap // Default to ASAP
         donation.specialInstructions = specialInstructionsTextView.text.isEmpty ? nil : specialInstructionsTextView.text
 
