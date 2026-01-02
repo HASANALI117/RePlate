@@ -15,7 +15,6 @@ class DonationLocationViewController: UIViewController {
     var donation: Donation!
     private let locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
-    private var selectedPickupTime: Donation.PickupTime = .asap
 
     // MARK: - IBOutlets
     @IBOutlet weak var progressBar: DonationProgressView!
@@ -23,8 +22,6 @@ class DonationLocationViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var locationSelectionView: LocationSelectionView!
-    @IBOutlet weak var asapButton: PickupTimeButton!
-    @IBOutlet weak var scheduleButton: PickupTimeButton!
     @IBOutlet weak var specialInstructionsTextView: UITextView!
 
     private let instructionsPlaceholderLabel: UILabel = {
@@ -36,17 +33,12 @@ class DonationLocationViewController: UIViewController {
         return label
     }()
 
-    private let datePicker = UIDatePicker()
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Setup progress bar
         progressBar.setProgress(step: 3, totalSteps: 4)
-
-        // Select ASAP by default
-        asapButton.isSelected = true
 
         // Setup location selection view
         locationSelectionView.onUseCurrentLocation = { [weak self] in
@@ -56,17 +48,12 @@ class DonationLocationViewController: UIViewController {
         // Setup location manager
         setupLocationManager()
 
-        // Setup date picker
-        setupDatePicker()
-
         // Setup text view
         setupTextView()
 
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        asapButton.addTarget(self, action: #selector(asapButtonTapped), for: .touchUpInside)
-        scheduleButton.addTarget(self, action: #selector(scheduleButtonTapped), for: .touchUpInside)
 
         hideKeyboardWhenTappedAround()
     }
@@ -75,12 +62,6 @@ class DonationLocationViewController: UIViewController {
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-
-    private func setupDatePicker() {
-        datePicker.datePickerMode = .dateAndTime
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.minimumDate = Date()
     }
 
     private func setupTextView() {
@@ -108,46 +89,6 @@ class DonationLocationViewController: UIViewController {
         locationManager.requestLocation()
     }
 
-    @objc private func asapButtonTapped() {
-        asapButton.isSelected = true
-        scheduleButton.isSelected = false
-        selectedPickupTime = .asap
-    }
-
-    @objc private func scheduleButtonTapped() {
-        asapButton.isSelected = false
-        scheduleButton.isSelected = true
-
-        // Show date picker
-        let alert = UIAlertController(title: "Schedule Pickup Time", message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
-
-        datePicker.frame = CGRect(x: 0, y: 50, width: alert.view.frame.width - 20, height: 200)
-        alert.view.addSubview(datePicker)
-
-        alert.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.selectedPickupTime = .scheduled(self.datePicker.date)
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            self.scheduleButton.updateTimeLabel(formatter.string(from: self.datePicker.date))
-        })
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
-            self?.asapButton.isSelected = true
-            self?.scheduleButton.isSelected = false
-            self?.selectedPickupTime = .asap
-        })
-
-        // For iPad
-        if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = scheduleButton
-            popoverController.sourceRect = scheduleButton.bounds
-        }
-
-        present(alert, animated: true)
-    }
-
     @objc private func nextButtonTapped() {
         // Validate location
         var address = ""
@@ -166,7 +107,7 @@ class DonationLocationViewController: UIViewController {
 
         // Update donation object
         donation.location.address = address
-        donation.pickupTime = selectedPickupTime
+        donation.pickupTime = .asap // Default to ASAP
         donation.specialInstructions = specialInstructionsTextView.text.isEmpty ? nil : specialInstructionsTextView.text
 
         // Navigate to review screen via segue
