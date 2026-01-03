@@ -47,11 +47,24 @@ class DonationLocationViewController: UIViewController {
         // Setup text view
         setupTextView()
 
+        // Setup text field
+        addressTextField.delegate = self
+        addressTextField.isUserInteractionEnabled = true
+        addressTextField.isEnabled = true
+
+        // Bring text field to front to ensure it's not blocked
+        addressTextField.superview?.bringSubviewToFront(addressTextField)
+
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
 
         hideKeyboardWhenTappedAround()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        debugTextFieldSetup()
     }
 
     // MARK: - Setup
@@ -73,6 +86,20 @@ class DonationLocationViewController: UIViewController {
         ])
 
         instructionsPlaceholderLabel.isHidden = !specialInstructionsTextView.text.isEmpty
+    }
+
+    private func debugTextFieldSetup() {
+        print("DEBUG: addressTextField properties:")
+        print("  - isUserInteractionEnabled: \(addressTextField.isUserInteractionEnabled)")
+        print("  - isEnabled: \(addressTextField.isEnabled)")
+        print("  - isHidden: \(addressTextField.isHidden)")
+        print("  - alpha: \(addressTextField.alpha)")
+        print("  - frame: \(addressTextField.frame)")
+
+        // Check if there's a view blocking it
+        if let hitView = addressTextField.superview?.hitTest(addressTextField.center, with: nil) {
+            print("  - Hit test result: \(type(of: hitView))")
+        }
     }
 
     // MARK: - Actions
@@ -126,6 +153,18 @@ extension DonationLocationViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showAlert(title: "Location Error", message: "Unable to get your current location. Please enter the address manually.")
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension DonationLocationViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("DEBUG: Text field began editing")
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
