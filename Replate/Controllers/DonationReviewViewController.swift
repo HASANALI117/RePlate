@@ -86,12 +86,17 @@ class DonationReviewViewController: UIViewController {
     }
 
     @objc private func postDonationButtonTapped() {
+        print("DEBUG: Post donation button tapped!")
+        print("DEBUG: Donation data - Category: \(donation.category.rawValue), Item: \(donation.itemName)")
+
         postDonationButton.isEnabled = false
         postDonationButton.setTitle("", for: .normal)
         activityIndicator.startAnimating()
 
         // Update status to available
         donation.status = .available
+
+        print("DEBUG: Calling Firebase to save donation...")
 
         // Save to Firestore using DonationService
         DonationService.shared.createDonation(donation) { [weak self] result in
@@ -104,9 +109,11 @@ class DonationReviewViewController: UIViewController {
 
                 switch result {
                 case .success(let savedDonation):
+                    print("DEBUG: ✅ Donation saved successfully! ID: \(savedDonation.id ?? "unknown")")
                     self.donation = savedDonation
                     self.showSuccessAndDismiss()
                 case .failure(let error):
+                    print("DEBUG: ❌ Failed to save donation: \(error.localizedDescription)")
                     self.showAlert(title: "Error", message: "Failed to post donation: \(error.localizedDescription)")
                 }
             }

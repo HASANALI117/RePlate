@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
 struct Donation: Codable {
     var id: String?
@@ -159,7 +158,7 @@ struct Donation: Codable {
         self.status = status
     }
 
-    // Firestore conversion
+    // Realtime Database conversion
     var dictionary: [String: Any] {
         var dict: [String: Any] = [
             "donorId": donorId,
@@ -175,8 +174,8 @@ struct Donation: Codable {
                 "longitude": location.longitude as Any,
                 "useCurrentLocation": location.useCurrentLocation
             ],
-            "createdAt": Timestamp(date: createdAt),
-            "updatedAt": Timestamp(date: updatedAt),
+            "createdAt": createdAt.timeIntervalSince1970,
+            "updatedAt": updatedAt.timeIntervalSince1970,
             "status": status.rawValue
         ]
 
@@ -187,7 +186,7 @@ struct Donation: Codable {
             dict["photo"] = photo
         }
         if let expiryDate = expiryDate {
-            dict["expiryDate"] = Timestamp(date: expiryDate)
+            dict["expiryDate"] = expiryDate.timeIntervalSince1970
         }
         if let specialInstructions = specialInstructions {
             dict["specialInstructions"] = specialInstructions
@@ -199,7 +198,7 @@ struct Donation: Codable {
             dict["pickupTimeType"] = "asap"
         case .scheduled(let date):
             dict["pickupTimeType"] = "scheduled"
-            dict["pickupTimeDate"] = Timestamp(date: date)
+            dict["pickupTimeDate"] = date.timeIntervalSince1970
         }
 
         return dict
@@ -214,8 +213,8 @@ struct Donation: Codable {
               let quantityUnitString = dictionary["quantityUnit"] as? String,
               let quantityUnit = QuantityUnit(rawValue: quantityUnitString),
               let description = dictionary["description"] as? String,
-              let createdAtTimestamp = dictionary["createdAt"] as? Timestamp,
-              let updatedAtTimestamp = dictionary["updatedAt"] as? Timestamp,
+              let createdAtTimestamp = dictionary["createdAt"] as? TimeInterval,
+              let updatedAtTimestamp = dictionary["updatedAt"] as? TimeInterval,
               let statusString = dictionary["status"] as? String,
               let status = DonationStatus(rawValue: statusString) else {
             return nil
@@ -236,10 +235,17 @@ struct Donation: Codable {
         let pickupTime: PickupTime
         if pickupTimeType == "asap" {
             pickupTime = .asap
-        } else if let pickupTimestamp = dictionary["pickupTimeDate"] as? Timestamp {
-            pickupTime = .scheduled(pickupTimestamp.dateValue())
+        } else if let pickupTimestamp = dictionary["pickupTimeDate"] as? TimeInterval {
+            pickupTime = .scheduled(Date(timeIntervalSince1970: pickupTimestamp))
         } else {
             pickupTime = .asap
+        }
+
+        let expiryDate: Date?
+        if let expiryTimestamp = dictionary["expiryDate"] as? TimeInterval {
+            expiryDate = Date(timeIntervalSince1970: expiryTimestamp)
+        } else {
+            expiryDate = nil
         }
 
         var donation = Donation(
@@ -250,7 +256,7 @@ struct Donation: Codable {
             quantityUnit: quantityUnit,
             photo: dictionary["photo"] as? String,
             description: description,
-            expiryDate: (dictionary["expiryDate"] as? Timestamp)?.dateValue(),
+            expiryDate: expiryDate,
             allergens: allergens,
             location: location,
             pickupTime: pickupTime,
@@ -259,8 +265,8 @@ struct Donation: Codable {
         )
 
         donation.id = dictionary["id"] as? String
-        donation.createdAt = createdAtTimestamp.dateValue()
-        donation.updatedAt = updatedAtTimestamp.dateValue()
+        donation.createdAt = Date(timeIntervalSince1970: createdAtTimestamp)
+        donation.updatedAt = Date(timeIntervalSince1970: updatedAtTimestamp)
 
         return donation
     }
