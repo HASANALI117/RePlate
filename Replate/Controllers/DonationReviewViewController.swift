@@ -324,21 +324,34 @@ class DonationReviewViewController: UIViewController {
         print("DEBUG: SuccessVC created, about to present...")
         print("DEBUG: self.presentedViewController = \(String(describing: self.presentedViewController))")
         print("DEBUG: self.view.window = \(String(describing: self.view.window))")
+        print("DEBUG: self.isViewLoaded = \(self.isViewLoaded)")
+        print("DEBUG: self.view.superview = \(String(describing: self.view.superview))")
 
-        // If there's already something presented, dismiss it first
-        if let presented = self.presentedViewController {
-            print("DEBUG: ⚠️ There's already a presented VC: \(type(of: presented))")
-            print("DEBUG: Dismissing it first...")
-            presented.dismiss(animated: false) {
-                print("DEBUG: Previous VC dismissed, now presenting success...")
+        // Present on next run loop to ensure view hierarchy is stable
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                print("DEBUG: ❌ self is nil in presentation block")
+                return
+            }
+
+            print("DEBUG: In async block, about to present...")
+            print("DEBUG: self.view.window (in async) = \(String(describing: self.view.window))")
+
+            // If there's already something presented, dismiss it first
+            if let presented = self.presentedViewController {
+                print("DEBUG: ⚠️ There's already a presented VC: \(type(of: presented))")
+                print("DEBUG: Dismissing it first...")
+                presented.dismiss(animated: false) {
+                    print("DEBUG: Previous VC dismissed, now presenting success...")
+                    self.present(successVC, animated: true) {
+                        print("DEBUG: ✅ SuccessViewController presentation completed!")
+                    }
+                }
+            } else {
+                print("DEBUG: No existing presented VC, presenting directly...")
                 self.present(successVC, animated: true) {
                     print("DEBUG: ✅ SuccessViewController presentation completed!")
                 }
-            }
-        } else {
-            print("DEBUG: No existing presented VC, presenting directly...")
-            self.present(successVC, animated: true) {
-                print("DEBUG: ✅ SuccessViewController presentation completed!")
             }
         }
     }
