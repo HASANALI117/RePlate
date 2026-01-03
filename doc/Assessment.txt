@@ -1,0 +1,182 @@
+﻿ 
+IT8108: Project Demonstration 
+ 
+Semester: Semester A, 2025-2026 Tutors: Ghassan AlShajjar (Course Coordinator), Haetham AlHaddad Learning 
+Outcomes Covered: LO1 - Design a user-centric user interface that follows UI and UX best practice.  LO2 - Implement complex programs (or Apps) for a mobile platform to a given business requirement 
+LO3 - Implement best practice, industry standards, professional ethics, diagram designing, programming and documentation conventions during the programming process. Weighting: • Project Demonstration – 60% Deadlines: • Submit your App as an Xcode project or GitHub URL on Moodle by 27th Dec 2025 – 11:55 PM 
+• Project Demonstration on the 28th, 29th, and 31st Dec 2025, 8 AM – 6 PM at the scheduled timing for your group (will be available on Moodle) Notes: Extensions: 
+• Requests for extensions should be made 2 working days before the deadline to Course Coordinator. Extensions will only be approved with valid reasons. Extensions are for the whole group. You are only permitted a maximum of one extension per course per semester. 
+Late submissions: 
+• All late submissions (less than 3 days) will be capped at 60%. All late submissions (more than 3 days) will receive 0 grade. 
+Resubmissions: 
+• You may be given an opportunity for resubmission if you have not met the required standard in one part of the assessment as the successful completion of each part of the assessment is a requirement for passing the course. 
+• Resubmissions will be allowed only once for each part of the project. 
+• Grades of any resubmission will be capped at 60%. 
+• Resubmissions of assignments will only be available if you have made a genuine effort to complete the assessment. If your tutor feels you have not done this, they will refer the case to the Programme Manager to decide on whether to allow late submissions or resubmission and penalty, if any, will be applied. 
+  
+ 
+ 
+ 
+ 
+Table of Contents 
+ 
+Project Demonstration (60%) – Learning outcomes assessed: LO1, LO2, LO3	3 
+Project Demonstration Format	4 
+Development Approach and Scope	5 
+Additional/Extra Features	6 
+Submission Requirements / Deliverables	6 
+Resubmissions / Resits	7 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Project Demonstration (60%) – Learning outcomes assessed: LO1, LO2, LO3 
+ 
+This phase of the project evaluates your technical implementation and ability to present your app clearly and confidently. Working in your assigned team, you will develop your mobile app based on the design and prototype phases and prepare for a formal live demonstration. 
+ 
+Your app must be implemented using Swift Storyboards (UIKit) in Xcode 15/16, targeting iOS 17.0 or later, with support for both iPhone and iPad using AutoLayout/Constraints. 
+ 
+Feature & UI Requirements 
+• App must have a name and an app icon/logo. 
+• Launch Screen (Splash Screen) must be implemented to reflect the branding and logo. 
+• Follow Apple’s Human Interface Guidelines for usability and accessibility (more). 
+• Use Table View/Collection View Controllers for displaying lists or structured forms. 
+• App must have sufficient test data to demonstrate core features during the demo. 
+• The Xcode project must be built without warnings or errors. 
+• Ensure support for both light and dark modes where applicable (System support). 
+• App should work seamlessly on both iPhone and iPad devices (UI & Functionality). 
+ 
+Data Storage & Backend Integration 
+Your app must store user or app-related data using the following backend services: 
+• Firebase (Firestore, Realtime Database, Authentication, Analytics). 
+• Cloudinary (for media storage only) 
+• Other services (Supabase, AWS,…) can be permitted with permission given by the tutor. 
+ 
+You may use local storage solutions such as UserDefaults, Core Data, or (.plist) files in the following example scenarios (other scenarios can be considered where applicable): 
+• Storing app preferences or temporary data. 
+• User Session Management. 
+Project Demonstration Format 
+ 
+The final demonstration is a core part of this assessment and will evaluate how effectively your app functions and how well your team can explain its implementation to a potential client. 
+ 
+During the demo, each group will walk through the app’s key features and respond to questions regarding the design, development decisions, and backend integration. All team members must speak and be able to explain their (or any) part in the development of the app. 
+ 
+Demonstration Structure • 	Total time allocated: 60 minutes (1 hour) 
+* 5 minutes – Setup and preparation 
+* 5 minutes – Introduction & presentation (PPT) 
+* 30 minutes –Live demo of the application 
+* 20 minutes – Q&A and evaluation by the tutor 
+ 
+Presentation Guidelines 
+• You will be provided with a PowerPoint template, which must be used during the demonstration to ensure consistency and coverage of key evaluation criteria. 
+• The demo must be conducted using the iOS Simulator in Xcode, with a live walkthrough of the app. Pre-recorded presentations or screen recordings are not allowed. 
+• Each group is expected to display a README file during the demo. The README will be evaluated as part of the demonstration for clarity, completeness, and accuracy. For more information on the contents of the file, refer to the course page. 
+• Each main feature must be demonstrated and linked back to relevant development decisions and tools used. 
+• All team members are required to speak in the demonstration and may be asked questions about any part of the project. 
+ 
+ 
+ 
+You should be prepared to answer questions related to: 
+• The architecture and internal structure of your app (e.g., use of MVC). 
+• How you integrated and used backend services and APIs. 
+• Detailed explanation of a specific feature or component of the application. 
+• Your UI/UX design choices, especially in reference to the prototype and the design guidelines addressed throughout the course. 
+• Any technical or design challenges you encountered and how you addressed them. 
+Development Approach and Scope 
+ 
+Your app should be developed using tools, practices, and patterns that are consistent with what has been covered during the course. This includes using Xcode, the Swift programming language, AutoLayout or constraints for responsive design, and a clear architecture such as Model–View–Controller (MVC). 
+ 
+If your team chooses to incorporate additional tools, third-party libraries, or alternative architecture, you are permitted to do so. However, you must ensure that: 
+• You have a strong understanding of how these tools work. 
+• You can explain and justify their use during the demonstration. 
+• You include clear documentation in your README, especially if set-up instructions differ from typical course examples. 
+ 
+Additionally, your app should remain at a manageable level of complexity. The focus is on producing a well-structured, functional application with quality code and design, rather than on adding excessive or advanced features that are difficult to complete or explain. Apps that attempt to include too many features often suffer from poor execution, prioritize quality over quantity. 
+Additional/Extra Features 
+ 
+Group members may choose to implement up to two additional features beyond the originally planned or documented scope of the application. These features must be: 
+• Clearly marked in the README file under a section titled “Additional Features”. 
+• Fully functional and integrated into the application. 
+• Demonstrated during the live presentation. 
+ 
+Each fully implemented additional feature may earn up to 2.5 bonus marks, for a maximum of 5 bonus marks per member. 
+ 
+Note: Bonus marks are awarded to the individual(s) responsible for the additional feature(s), as long as they can demonstrate and explain their implementation during the demo. 
+Submission Requirements / Deliverables 
+ 
+Each team is expected to submit their final project (application) via a public GitHub repository before the scheduled demonstration. This ensures that large project files are accessible for demonstration and evaluation, especially in cases where file size may exceed platform limits (e.g., Moodle). It also reflects industry-standard workflows where developers showcase their work through open repositories. 
+ 
+• Remember to keep your repository well-organized, with clear commit history and meaningful messages. 
+• Your README file should be kept up to date throughout development, as it will be reviewed during the final demo. 
+ 
+ 
+Resubmissions / Resits 
+ 
+Students who do not meet the required standard in the demo phase will have the opportunity to improve and resubmit their work for reassessment. 
+ 
+Eligibility 
+• Resubmission is only available to students who fail the Project Demonstration component, as it is a must-pass component. 
+• The opportunity applies on an individual basis, not necessarily to the entire group. 
+• Students who are eligible will be notified by the tutor after the initial demo evaluation. 
+ 
+Resit Schedule 
+• The resubmission demo will take place on Sunday, 4 January 2026. 
+• Eligible students must present an updated version of their app individually, following the same demo structure as the original session. 
+• The project must be available in the same GitHub repository, with clear notes on any changes or improvements made. 
+ 
+Grading Policy 
+• Resubmitted work will be capped at 60% for this component. 
+• The updated demo must still meet all minimum requirements (functionality, presentation, and technical quality) to pass. 
+ 
+Students are encouraged to seek guidance or feedback in advance if they are preparing for a resubmission. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+IT8108 Mobile Programming – Project 	Page 1 of 7 
+ 
+
+IT8108 Mobile Programming – Project 	Page 1 of 7 
+ 
+
+ 
+
+IT8108 Mobile Programming – Project 	Page 1 of 7 
+ 
+

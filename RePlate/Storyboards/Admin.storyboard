@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tab-bar">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Admin Tab Bar Controller-->
+        <scene sceneID="tab-scene">
+            <objects>
+                <tabBarController storyboardIdentifier="AdminTabBarController" id="tab-bar" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tab-bar-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.23137254901960785" green="0.47843137254901963" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dashboard-nav" kind="relationship" relationship="viewControllers" id="dashboard-segue"/>
+                        <segue destination="donations-nav" kind="relationship" relationship="viewControllers" id="donations-segue"/>
+                        <segue destination="impact-nav" kind="relationship" relationship="viewControllers" id="impact-segue"/>
+                        <segue destination="table-nav" kind="relationship" relationship="viewControllers" id="table-segue"/>
+                        <segue destination="collection-nav" kind="relationship" relationship="viewControllers" id="collection-segue"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tab-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0" y="0"/>
+        </scene>
+        
+        <!--Dashboard-->
+        <scene sceneID="dashboard-nav-scene">
+            <objects>
+                <navigationController id="dashboard-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="house.fill" catalog="system" id="dashboard-tab"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dashboard-navbar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dashboard-vc" kind="relationship" relationship="rootViewController" id="dashboard-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dashboard-nav-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="-400"/>
+        </scene>
+        
+        <!--Admin Dashboard View Controller-->
+        <scene sceneID="dashboard-scene">
+            <objects>
+                <viewController id="dashboard-vc" customClass="AdminDashboardViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dashboard-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scroll-view">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-view">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="800"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header-view">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                                                <color key="backgroundColor" red="0.23137254901960785" green="0.47843137254901963" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="header-height"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="metrics-stack">
+                                                <rect key="frame" x="20" y="220" width="353" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="metrics-height"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pending-view">
+                                                <rect key="frame" x="20" y="340" width="353" height="150"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="pending-height"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="activity-view">
+                                                <rect key="frame" x="20" y="510" width="353" height="120"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="activity-height"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="actions-view">
+                                                <rect key="frame" x="20" y="650" width="353" height="130"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="actions-height"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="header-view" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="header-leading"/>
+                                            <constraint firstItem="header-view" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="header-trailing"/>
+                                            <constraint firstItem="header-view" firstAttribute="top" secondItem="content-view" secondAttribute="top" id="header-top"/>
+                                            <constraint firstItem="metrics-stack" firstAttribute="top" secondItem="header-view" secondAttribute="bottom" constant="20" id="metrics-top"/>
+                                            <constraint firstItem="metrics-stack" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="20" id="metrics-leading"/>
+                                            <constraint firstItem="content-view" firstAttribute="trailing" secondItem="metrics-stack" secondAttribute="trailing" constant="20" id="metrics-trailing"/>
+                                            <constraint firstItem="pending-view" firstAttribute="top" secondItem="metrics-stack" secondAttribute="bottom" constant="20" id="pending-top"/>
+                                            <constraint firstItem="pending-view" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="20" id="pending-leading"/>
+                                            <constraint firstItem="content-view" firstAttribute="trailing" secondItem="pending-view" secondAttribute="trailing" constant="20" id="pending-trailing"/>
+                                            <constraint firstItem="activity-view" firstAttribute="top" secondItem="pending-view" secondAttribute="bottom" constant="20" id="activity-top"/>
+                                            <constraint firstItem="activity-view" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="20" id="activity-leading"/>
+                                            <constraint firstItem="content-view" firstAttribute="trailing" secondItem="activity-view" secondAttribute="trailing" constant="20" id="activity-trailing"/>
+                                            <constraint firstItem="actions-view" firstAttribute="top" secondItem="activity-view" secondAttribute="bottom" constant="20" id="actions-top"/>
+                                            <constraint firstItem="actions-view" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="20" id="actions-leading"/>
+                                            <constraint firstItem="content-view" firstAttribute="trailing" secondItem="actions-view" secondAttribute="trailing" constant="20" id="actions-trailing"/>
+                                            <constraint firstItem="content-view" firstAttribute="bottom" secondItem="actions-view" secondAttribute="bottom" constant="20" id="content-bottom"/>
+                                            <constraint firstAttribute="height" constant="800" id="content-height"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="content-view" firstAttribute="leading" secondItem="scroll-view" secondAttribute="leading" id="content-leading"/>
+                                    <constraint firstItem="content-view" firstAttribute="trailing" secondItem="scroll-view" secondAttribute="trailing" id="content-trailing"/>
+                                    <constraint firstItem="content-view" firstAttribute="top" secondItem="scroll-view" secondAttribute="top" id="content-top"/>
+                                    <constraint firstItem="content-view" firstAttribute="bottom" secondItem="scroll-view" secondAttribute="bottom" id="content-scroll-bottom"/>
+                                    <constraint firstItem="content-view" firstAttribute="width" secondItem="scroll-view" secondAttribute="width" id="content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dashboard-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="scroll-view" firstAttribute="leading" secondItem="dashboard-safe" secondAttribute="leading" id="scroll-leading"/>
+                            <constraint firstItem="dashboard-safe" firstAttribute="trailing" secondItem="scroll-view" secondAttribute="trailing" id="scroll-trailing"/>
+                            <constraint firstItem="scroll-view" firstAttribute="top" secondItem="dashboard-safe" secondAttribute="top" id="scroll-top"/>
+                            <constraint firstItem="dashboard-safe" firstAttribute="bottom" secondItem="scroll-view" secondAttribute="bottom" id="scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dashboard-nav-item"/>
+                    <connections>
+                        <outlet property="headerView" destination="header-view" id="header-outlet"/>
+                        <outlet property="metricsStackView" destination="metrics-stack" id="metrics-outlet"/>
+                        <outlet property="pendingActionsView" destination="pending-view" id="dashboard-pending-outlet"/>
+                        <outlet property="quickActionsView" destination="actions-view" id="actions-outlet"/>
+                        <outlet property="recentActivityView" destination="activity-view" id="activity-outlet"/>
+                        <segue destination="user-management-vc" kind="show" identifier="showUserManagement" id="user-management-segue"/>
+                        <segue destination="ngo-verification-vc" kind="show" identifier="showNGOVerification" id="ngo-verification-segue"/>
+                        <segue destination="dispute-resolution-vc" kind="show" identifier="showDisputeResolution" id="dispute-resolution-segue"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dashboard-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="-400"/>
+        </scene>
+        
+        <!--Donations-->
+        <scene sceneID="donations-nav-scene">
+            <objects>
+                <navigationController id="donations-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Donations" image="box.fill" catalog="system" id="donations-tab"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="donations-navbar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="donations-vc" kind="relationship" relationship="rootViewController" id="donations-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="donations-nav-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="-100"/>
+        </scene>
+        
+        <!--Donation Management View Controller-->
+        <scene sceneID="donations-scene">
+            <objects>
+                <viewController id="donations-vc" customClass="DonationManagementViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="donations-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="donations-scroll">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="donations-content">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="donations-header">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                                                <color key="backgroundColor" red="0.23137254901960785" green="0.47843137254901963" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="donations-header-height"/>
+                                                </constraints>
+                                            </view>
+                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="donations-search">
+                                                <rect key="frame" x="16" y="140" width="361" height="56"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </searchBar>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="donations-stats">
+                                                <rect key="frame" x="16" y="216" width="361" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="donations-stats-height"/>
+                                                </constraints>
+                                            </stackView>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="donations-table">
+                                                <rect key="frame" x="0.0" y="316" width="393" height="264"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DonationManagementCell" id="donations-cell">
+                                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="donations-cell" id="donations-cell-content">
+                                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="donations-vc" id="donations-table-datasource"/>
+                                                    <outlet property="delegate" destination="donations-vc" id="donations-table-delegate"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="donations-header" firstAttribute="leading" secondItem="donations-content" secondAttribute="leading" id="donations-header-leading"/>
+                                            <constraint firstItem="donations-header" firstAttribute="trailing" secondItem="donations-content" secondAttribute="trailing" id="donations-header-trailing"/>
+                                            <constraint firstItem="donations-header" firstAttribute="top" secondItem="donations-content" secondAttribute="top" id="donations-header-top"/>
+                                            <constraint firstItem="donations-search" firstAttribute="top" secondItem="donations-header" secondAttribute="bottom" constant="20" id="donations-search-top"/>
+                                            <constraint firstItem="donations-search" firstAttribute="leading" secondItem="donations-content" secondAttribute="leading" constant="16" id="donations-search-leading"/>
+                                            <constraint firstItem="donations-content" firstAttribute="trailing" secondItem="donations-search" secondAttribute="trailing" constant="16" id="donations-search-trailing"/>
+                                            <constraint firstItem="donations-stats" firstAttribute="top" secondItem="donations-search" secondAttribute="bottom" constant="20" id="donations-stats-top"/>
+                                            <constraint firstItem="donations-stats" firstAttribute="leading" secondItem="donations-content" secondAttribute="leading" constant="16" id="donations-stats-leading"/>
+                                            <constraint firstItem="donations-content" firstAttribute="trailing" secondItem="donations-stats" secondAttribute="trailing" constant="16" id="donations-stats-trailing"/>
+                                            <constraint firstItem="donations-table" firstAttribute="top" secondItem="donations-stats" secondAttribute="bottom" constant="20" id="donations-table-top"/>
+                                            <constraint firstItem="donations-table" firstAttribute="leading" secondItem="donations-content" secondAttribute="leading" id="donations-table-leading"/>
+                                            <constraint firstItem="donations-content" firstAttribute="trailing" secondItem="donations-table" secondAttribute="trailing" id="donations-table-trailing"/>
+                                            <constraint firstItem="donations-content" firstAttribute="bottom" secondItem="donations-table" secondAttribute="bottom" constant="20" id="donations-content-bottom"/>
+                                            <constraint firstAttribute="height" constant="600" id="donations-content-height"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="donations-content" firstAttribute="leading" secondItem="donations-scroll" secondAttribute="leading" id="donations-content-leading"/>
+                                    <constraint firstItem="donations-content" firstAttribute="trailing" secondItem="donations-scroll" secondAttribute="trailing" id="donations-content-trailing"/>
+                                    <constraint firstItem="donations-content" firstAttribute="top" secondItem="donations-scroll" secondAttribute="top" id="donations-content-top"/>
+                                    <constraint firstItem="donations-content" firstAttribute="bottom" secondItem="donations-scroll" secondAttribute="bottom" id="donations-content-scroll-bottom"/>
+                                    <constraint firstItem="donations-content" firstAttribute="width" secondItem="donations-scroll" secondAttribute="width" id="donations-content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="donations-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="donations-scroll" firstAttribute="leading" secondItem="donations-safe" secondAttribute="leading" id="donations-scroll-leading"/>
+                            <constraint firstItem="donations-safe" firstAttribute="trailing" secondItem="donations-scroll" secondAttribute="trailing" id="donations-scroll-trailing"/>
+                            <constraint firstItem="donations-scroll" firstAttribute="top" secondItem="donations-safe" secondAttribute="top" id="donations-scroll-top"/>
+                            <constraint firstItem="donations-safe" firstAttribute="bottom" secondItem="donations-scroll" secondAttribute="bottom" id="donations-scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Donation Management" id="donations-nav-item"/>
+                    <connections>
+                        <outlet property="donationsTableView" destination="donations-table" id="donations-table-outlet"/>
+                        <outlet property="headerView" destination="donations-header" id="donations-header-outlet"/>
+                        <outlet property="searchBar" destination="donations-search" id="donations-search-outlet"/>
+                        <outlet property="statsStackView" destination="donations-stats" id="donations-stats-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="donations-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="-100"/>
+        </scene>
+        
+        <!--Impact-->
+        <scene sceneID="impact-nav-scene">
+            <objects>
+                <navigationController id="impact-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Impact" image="heart.fill" catalog="system" id="impact-tab"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="impact-navbar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="impact-vc" kind="relationship" relationship="rootViewController" id="impact-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="impact-nav-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="200"/>
+        </scene>
+        
+        <!--Your Impact View Controller-->
+        <scene sceneID="impact-scene">
+            <objects>
+                <viewController id="impact-vc" customClass="YourImpactViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="impact-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="impact-scroll">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="impact-content">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="700"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="impact-header">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="180"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Impact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="impact-title">
+                                                        <rect key="frame" x="20" y="60" width="353" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making a difference, one meal at a time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="impact-subtitle">
+                                                        <rect key="frame" x="20" y="104" width="353" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.23137254901960785" green="0.47843137254901963" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="impact-header-height"/>
+                                                    <constraint firstItem="impact-title" firstAttribute="leading" secondItem="impact-header" secondAttribute="leading" constant="20" id="title-leading"/>
+                                                    <constraint firstAttribute="trailing" secondItem="impact-title" secondAttribute="trailing" constant="20" id="title-trailing"/>
+                                                    <constraint firstItem="impact-title" firstAttribute="top" secondItem="impact-header" secondAttribute="top" constant="60" id="title-top"/>
+                                                    <constraint firstItem="impact-subtitle" firstAttribute="leading" secondItem="impact-header" secondAttribute="leading" constant="20" id="subtitle-leading"/>
+                                                    <constraint firstAttribute="trailing" secondItem="impact-subtitle" secondAttribute="trailing" constant="20" id="subtitle-trailing"/>
+                                                    <constraint firstItem="impact-subtitle" firstAttribute="top" secondItem="impact-title" secondAttribute="bottom" constant="8" id="subtitle-top"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="stats-stack">
+                                                <rect key="frame" x="20" y="200" width="353" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="stats-height"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view">
+                                                <rect key="frame" x="20" y="340" width="353" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="chart-height"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="achievements-view">
+                                                <rect key="frame" x="20" y="560" width="353" height="120"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="achievements-height"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="impact-header" firstAttribute="leading" secondItem="impact-content" secondAttribute="leading" id="impact-header-leading"/>
+                                            <constraint firstItem="impact-header" firstAttribute="trailing" secondItem="impact-content" secondAttribute="trailing" id="impact-header-trailing"/>
+                                            <constraint firstItem="impact-header" firstAttribute="top" secondItem="impact-content" secondAttribute="top" id="impact-header-top"/>
+                                            <constraint firstItem="stats-stack" firstAttribute="top" secondItem="impact-header" secondAttribute="bottom" constant="20" id="stats-top"/>
+                                            <constraint firstItem="stats-stack" firstAttribute="leading" secondItem="impact-content" secondAttribute="leading" constant="20" id="stats-leading"/>
+                                            <constraint firstItem="impact-content" firstAttribute="trailing" secondItem="stats-stack" secondAttribute="trailing" constant="20" id="stats-trailing"/>
+                                            <constraint firstItem="chart-view" firstAttribute="top" secondItem="stats-stack" secondAttribute="bottom" constant="20" id="chart-top"/>
+                                            <constraint firstItem="chart-view" firstAttribute="leading" secondItem="impact-content" secondAttribute="leading" constant="20" id="chart-leading"/>
+                                            <constraint firstItem="impact-content" firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>
+                                            <constraint firstItem="achievements-view" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="achievements-top"/>
+                                            <constraint firstItem="achievements-view" firstAttribute="leading" secondItem="impact-content" secondAttribute="leading" constant="20" id="achievements-leading"/>
+                                            <constraint firstItem="impact-content" firstAttribute="trailing" secondItem="achievements-view" secondAttribute="trailing" constant="20" id="achievements-trailing"/>
+                                            <constraint firstItem="impact-content" firstAttribute="bottom" secondItem="achievements-view" secondAttribute="bottom" constant="20" id="impact-content-bottom"/>
+                                            <constraint firstAttribute="height" constant="700" id="impact-content-height"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="impact-content" firstAttribute="leading" secondItem="impact-scroll" secondAttribute="leading" id="impact-content-leading"/>
+                                    <constraint firstItem="impact-content" firstAttribute="trailing" secondItem="impact-scroll" secondAttribute="trailing" id="impact-content-trailing"/>
+                                    <constraint firstItem="impact-content" firstAttribute="top" secondItem="impact-scroll" secondAttribute="top" id="impact-content-top"/>
+                                    <constraint firstItem="impact-content" firstAttribute="bottom" secondItem="impact-scroll" secondAttribute="bottom" id="impact-content-scroll-bottom"/>
+                                    <constraint firstItem="impact-content" firstAttribute="width" secondItem="impact-scroll" secondAttribute="width" id="impact-content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="impact-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="impact-scroll" firstAttribute="leading" secondItem="impact-safe" secondAttribute="leading" id="impact-scroll-leading"/>
+                            <constraint firstItem="impact-safe" firstAttribute="trailing" secondItem="impact-scroll" secondAttribute="trailing" id="impact-scroll-trailing"/>
+                            <constraint firstItem="impact-scroll" firstAttribute="top" secondItem="impact-safe" secondAttribute="top" id="impact-scroll-top"/>
+                            <constraint firstItem="impact-safe" firstAttribute="bottom" secondItem="impact-scroll" secondAttribute="bottom" id="impact-scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="impact-nav-item"/>
+                    <connections>
+                        <outlet property="achievementsView" destination="achievements-view" id="achievements-outlet"/>
+                        <outlet property="chartView" destination="chart-view" id="chart-outlet"/>
+                        <outlet property="headerView" destination="impact-header" id="impact-header-outlet"/>
+                        <outlet property="statsStackView" destination="stats-stack" id="stats-outlet"/>
+                        <outlet property="subtitleLabel" destination="impact-subtitle" id="impact-subtitle-outlet"/>
+                        <outlet property="titleLabel" destination="impact-title" id="impact-title-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="impact-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="200"/>
+        </scene>
+        
+        <!--Table List-->
+        <scene sceneID="table-nav-scene">
+            <objects>
+                <navigationController id="table-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Table List" image="list.bullet" catalog="system" id="table-tab"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="table-navbar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="table-vc" kind="relationship" relationship="rootViewController" id="table-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="table-nav-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="500"/>
+        </scene>
+        
+        <!--Donation List Table View Controller-->
+        <scene sceneID="table-scene">
+            <objects>
+                <tableViewController id="table-vc" customClass="DonationListTableViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="table-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DonationCell" id="table-cell">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="table-cell" id="table-cell-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="table-vc" id="table-datasource"/>
+                            <outlet property="delegate" destination="table-vc" id="table-delegate"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="table-nav-item"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="table-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="500"/>
+        </scene>
+        
+        <!--Grid View-->
+        <scene sceneID="collection-nav-scene">
+            <objects>
+                <navigationController id="collection-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Grid View" image="square.grid.2x2" catalog="system" id="collection-tab"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="collection-navbar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="collection-vc" kind="relationship" relationship="rootViewController" id="collection-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="collection-nav-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="800"/>
+        </scene>
+        
+        <!--Donation Grid Collection View Controller-->
+        <scene sceneID="collection-scene">
+            <objects>
+                <collectionViewController id="collection-vc" customClass="DonationGridCollectionViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="collection-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="collection-layout">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DonationCell" id="collection-cell">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="collection-cell-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="collection-vc" id="collection-datasource"/>
+                            <outlet property="delegate" destination="collection-vc" id="collection-delegate"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="collection-nav-item"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="collection-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="800"/>
+        </scene>
+        
+        <!--User Management-->
+        <scene sceneID="user-management-scene">
+            <objects>
+                <viewController storyboardIdentifier="UserManagementViewController" id="user-management-vc" customClass="UserManagementViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="user-management-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="user-search-bar">
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="user-filter-segment">
+                                <rect key="frame" x="16" y="175" width="361" height="32"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Donors"/>
+                                    <segment title="NGOs"/>
+                                    <segment title="Suspended"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="users-table-view">
+                                <rect key="frame" x="0.0" y="222" width="393" height="547"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="user-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="user-cell" id="user-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="user-management-vc" id="users-table-datasource"/>
+                                    <outlet property="delegate" destination="user-management-vc" id="users-table-delegate"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="user-management-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="user-search-bar" firstAttribute="leading" secondItem="user-management-safe" secondAttribute="leading" id="search-leading"/>
+                            <constraint firstItem="user-management-safe" firstAttribute="trailing" secondItem="user-search-bar" secondAttribute="trailing" id="search-trailing"/>
+                            <constraint firstItem="user-search-bar" firstAttribute="top" secondItem="user-management-safe" secondAttribute="top" id="search-top"/>
+                            <constraint firstItem="user-filter-segment" firstAttribute="top" secondItem="user-search-bar" secondAttribute="bottom" constant="16" id="segment-top"/>
+                            <constraint firstItem="user-filter-segment" firstAttribute="leading" secondItem="user-management-safe" secondAttribute="leading" constant="16" id="segment-leading"/>
+                            <constraint firstItem="user-management-safe" firstAttribute="trailing" secondItem="user-filter-segment" secondAttribute="trailing" constant="16" id="segment-trailing"/>
+                            <constraint firstItem="users-table-view" firstAttribute="top" secondItem="user-filter-segment" secondAttribute="bottom" constant="16" id="table-top"/>
+                            <constraint firstItem="users-table-view" firstAttribute="leading" secondItem="user-management-safe" secondAttribute="leading" id="table-leading"/>
+                            <constraint firstItem="user-management-safe" firstAttribute="trailing" secondItem="users-table-view" secondAttribute="trailing" id="table-trailing"/>
+                            <constraint firstItem="user-management-safe" firstAttribute="bottom" secondItem="users-table-view" secondAttribute="bottom" id="table-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Management" id="user-management-nav"/>
+                    <connections>
+                        <outlet property="filterSegmentedControl" destination="user-filter-segment" id="filter-outlet"/>
+                        <outlet property="searchBar" destination="user-search-bar" id="search-outlet"/>
+                        <outlet property="usersTableView" destination="users-table-view" id="users-table-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="user-management-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="-400"/>
+        </scene>
+        
+        <!--NGO Verification-->
+        <scene sceneID="ngo-verification-scene">
+            <objects>
+                <viewController storyboardIdentifier="NGOVerificationViewController" id="ngo-verification-vc" customClass="NGOVerificationViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ngo-verification-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ngo-segment">
+                                <rect key="frame" x="16" y="119" width="361" height="32"/>
+                                <segments>
+                                    <segment title="Pending"/>
+                                    <segment title="Verified"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pending-table">
+                                <rect key="frame" x="0.0" y="167" width="393" height="602"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NGOCell" id="pending-ngo-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pending-ngo-cell" id="pending-ngo-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ngo-verification-vc" id="pending-table-datasource"/>
+                                    <outlet property="delegate" destination="ngo-verification-vc" id="pending-table-delegate"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="verified-table">
+                                <rect key="frame" x="0.0" y="167" width="393" height="602"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NGOCell" id="verified-ngo-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="verified-ngo-cell" id="verified-ngo-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ngo-verification-vc" id="verified-table-datasource"/>
+                                    <outlet property="delegate" destination="ngo-verification-vc" id="verified-table-delegate"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ngo-verification-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ngo-segment" firstAttribute="top" secondItem="ngo-verification-safe" secondAttribute="top" constant="16" id="ngo-segment-top"/>
+                            <constraint firstItem="ngo-segment" firstAttribute="leading" secondItem="ngo-verification-safe" secondAttribute="leading" constant="16" id="ngo-segment-leading"/>
+                            <constraint firstItem="ngo-verification-safe" firstAttribute="trailing" secondItem="ngo-segment" secondAttribute="trailing" constant="16" id="ngo-segment-trailing"/>
+                            <constraint firstItem="pending-table" firstAttribute="top" secondItem="ngo-segment" secondAttribute="bottom" constant="16" id="ngo-pending-top"/>
+                            <constraint firstItem="pending-table" firstAttribute="leading" secondItem="ngo-verification-safe" secondAttribute="leading" id="ngo-pending-leading"/>
+                            <constraint firstItem="ngo-verification-safe" firstAttribute="trailing" secondItem="pending-table" secondAttribute="trailing" id="ngo-pending-trailing"/>
+                            <constraint firstItem="ngo-verification-safe" firstAttribute="bottom" secondItem="pending-table" secondAttribute="bottom" id="pending-bottom"/>
+                            <constraint firstItem="verified-table" firstAttribute="top" secondItem="ngo-segment" secondAttribute="bottom" constant="16" id="verified-top"/>
+                            <constraint firstItem="verified-table" firstAttribute="leading" secondItem="ngo-verification-safe" secondAttribute="leading" id="verified-leading"/>
+                            <constraint firstItem="ngo-verification-safe" firstAttribute="trailing" secondItem="verified-table" secondAttribute="trailing" id="verified-trailing"/>
+                            <constraint firstItem="ngo-verification-safe" firstAttribute="bottom" secondItem="verified-table" secondAttribute="bottom" id="verified-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="NGO Verification" id="ngo-verification-nav"/>
+                    <connections>
+                        <outlet property="pendingTableView" destination="pending-table" id="ngo-pending-outlet"/>
+                        <outlet property="segmentedControl" destination="ngo-segment" id="ngo-segment-outlet"/>
+                        <outlet property="verifiedTableView" destination="verified-table" id="verified-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngo-verification-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3600" y="-400"/>
+        </scene>
+        
+        <!--Dispute Resolution-->
+        <scene sceneID="dispute-resolution-scene">
+            <objects>
+                <viewController storyboardIdentifier="DisputeResolutionViewController" id="dispute-resolution-vc" customClass="DisputeResolutionViewController" customModule="RePlate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dispute-resolution-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dispute-filter-segment">
+                                <rect key="frame" x="16" y="119" width="361" height="32"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Open"/>
+                                    <segment title="Resolved"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="disputes-table">
+                                <rect key="frame" x="0.0" y="167" width="393" height="602"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DisputeCell" id="dispute-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dispute-cell" id="dispute-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dispute-resolution-vc" id="disputes-table-datasource"/>
+                                    <outlet property="delegate" destination="dispute-resolution-vc" id="disputes-table-delegate"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dispute-resolution-safe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dispute-filter-segment" firstAttribute="top" secondItem="dispute-resolution-safe" secondAttribute="top" constant="16" id="dispute-segment-top"/>
+                            <constraint firstItem="dispute-filter-segment" firstAttribute="leading" secondItem="dispute-resolution-safe" secondAttribute="leading" constant="16" id="dispute-segment-leading"/>
+                            <constraint firstItem="dispute-resolution-safe" firstAttribute="trailing" secondItem="dispute-filter-segment" secondAttribute="trailing" constant="16" id="dispute-segment-trailing"/>
+                            <constraint firstItem="disputes-table" firstAttribute="top" secondItem="dispute-filter-segment" secondAttribute="bottom" constant="16" id="disputes-table-top"/>
+                            <constraint firstItem="disputes-table" firstAttribute="leading" secondItem="dispute-resolution-safe" secondAttribute="leading" id="disputes-table-leading"/>
+                            <constraint firstItem="dispute-resolution-safe" firstAttribute="trailing" secondItem="disputes-table" secondAttribute="trailing" id="disputes-table-trailing"/>
+                            <constraint firstItem="dispute-resolution-safe" firstAttribute="bottom" secondItem="disputes-table" secondAttribute="bottom" id="disputes-table-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dispute Resolution" id="dispute-resolution-nav"/>
+                    <connections>
+                        <outlet property="disputesTableView" destination="disputes-table" id="disputes-table-outlet"/>
+                        <outlet property="filterSegmentedControl" destination="dispute-filter-segment" id="dispute-filter-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dispute-resolution-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4500" y="-400"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="box.fill" catalog="system" width="128" height="104"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
