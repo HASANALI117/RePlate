@@ -279,32 +279,46 @@ class DonationReviewViewController: UIViewController {
 
             // Dismiss the success screen first
             self.dismiss(animated: true) {
-                // Then navigate to browse page
-                self.navigateToBrowsePage()
+                // Then dismiss the entire donation flow and navigate
+                self.dismissAndNavigateToBrowse()
             }
         }
         present(successVC, animated: true)
     }
 
-    private func navigateToBrowsePage() {
-        print("DEBUG: Navigating to browse page...")
+    private func dismissAndNavigateToBrowse() {
+        print("DEBUG: Dismissing modal flow and navigating to browse page...")
+        
+        // Get the presenting view controller before dismissing
+        guard let presentingVC = self.presentingViewController else {
+            print("DEBUG: ❌ No presenting view controller")
+            return
+        }
         
         // Create the browse donations view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController {
-            
-            // Pop to root and push the browse VC
-            if let navController = navigationController {
-                // Get all view controllers and keep only the first one (root)
-                var viewControllers = navController.viewControllers
-                viewControllers = [viewControllers[0], browseDonationsVC]
-                navController.setViewControllers(viewControllers, animated: true)
-                print("DEBUG: ✅ Navigated to BrowseDonationsViewController")
-            } else {
-                print("DEBUG: ❌ No navigation controller found")
-            }
-        } else {
+        guard let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController else {
             print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController - check Storyboard ID")
+            return
+        }
+        
+        // Dismiss the entire modal donation flow
+        presentingVC.dismiss(animated: true) {
+            print("DEBUG: ✅ Dismissed modal flow")
+            
+            // Now navigate to browse VC from the presenting VC
+            if let navController = presentingVC as? UINavigationController {
+                navController.pushViewController(browseDonationsVC, animated: true)
+                print("DEBUG: ✅ Pushed to presenting nav controller")
+            } else if let navController = presentingVC.navigationController {
+                navController.pushViewController(browseDonationsVC, animated: true)
+                print("DEBUG: ✅ Pushed to presenting VC's nav controller")
+            } else {
+                // If presenting VC doesn't have a nav controller, wrap and present
+                let nav = UINavigationController(rootViewController: browseDonationsVC)
+                presentingVC.present(nav, animated: true)
+                print("DEBUG: ⚠️ Presented browse VC modally (no nav controller)")
+            }
         }
     }
 
