@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Donation: Codable {
+class Donation: Codable {
     var id: String?
     let donorId: String
     var category: DonationCategory

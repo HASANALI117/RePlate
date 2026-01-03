@@ -148,9 +148,25 @@ class DonationCategoryViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDonationDetails",
-           let detailsVC = segue.destination as? DonationDetailsViewController {
-            detailsVC.donation = donation
+        print("DEBUG: CategoryVC - prepare(for segue) called")
+        print("DEBUG: CategoryVC - Segue identifier: \(segue.identifier ?? "nil")")
+        print("DEBUG: CategoryVC - Destination VC type: \(type(of: segue.destination))")
+
+        if segue.identifier == "showDonationDetails" {
+            if let detailsVC = segue.destination as? DonationDetailsViewController {
+                print("DEBUG: CategoryVC - Passing donation to DetailsVC")
+                print("DEBUG: CategoryVC - Donation state before passing:")
+                print("  - Category: \(donation.category.rawValue)")
+                print("  - Item: \(donation.itemName)")
+                print("  - Quantity: \(donation.quantity) \(donation.quantityUnit.rawValue)")
+                print("  - Donor ID: \(donation.donorId)")
+                detailsVC.donation = donation
+                print("DEBUG: CategoryVC - ✅ Donation passed successfully")
+            } else {
+                print("DEBUG: CategoryVC - ❌ Could not cast destination to DonationDetailsViewController")
+            }
+        } else {
+            print("DEBUG: CategoryVC - ❌ Segue identifier '\(segue.identifier ?? "nil")' does not match 'showDonationDetails'")
         }
     }
 
