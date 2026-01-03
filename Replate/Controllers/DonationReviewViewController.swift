@@ -63,51 +63,54 @@ class DonationReviewViewController: UIViewController {
             postDonationButton.alpha = 1.0
             postDonationButton.isUserInteractionEnabled = true
             postDonationButton.isEnabled = true
-
-            // Remove the button from scroll view and add to main view if needed
-            if postDonationButton.superview == scrollView {
-                print("DEBUG: Moving button from scroll view to main view")
-                postDonationButton.removeFromSuperview()
-                view.addSubview(postDonationButton)
-
-                // Re-setup constraints to pin to bottom of view
-                postDonationButton.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-                    postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
-                    postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-                    postDonationButton.heightAnchor.constraint(equalToConstant: 52)
-                ])
-            }
-
-            view.bringSubviewToFront(postDonationButton)
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // FORCE the button out of scroll view and pin to bottom
+        if postDonationButton.superview == scrollView {
+            print("DEBUG: ⚠️ Button is inside scroll view - moving it out")
+            postDonationButton.removeFromSuperview()
+            view.addSubview(postDonationButton)
+
+            postDonationButton.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+                postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+                postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+                postDonationButton.heightAnchor.constraint(equalToConstant: 52)
+            ])
+
+            view.layoutIfNeeded()
+        }
+
         print("DEBUG: Post donation button frame: \(postDonationButton.frame)")
         print("DEBUG: Post donation button isHidden: \(postDonationButton.isHidden)")
         print("DEBUG: Post donation button alpha: \(postDonationButton.alpha)")
+        print("DEBUG: Post donation button isEnabled: \(postDonationButton.isEnabled)")
+        print("DEBUG: Post donation button isUserInteractionEnabled: \(postDonationButton.isUserInteractionEnabled)")
         print("DEBUG: View bounds: \(view.bounds)")
-        print("DEBUG: ScrollView frame: \(scrollView.frame)")
-        print("DEBUG: ScrollView contentSize: \(scrollView.contentSize)")
 
         // Check button's superview
         if let superview = postDonationButton.superview {
             print("DEBUG: Button superview type: \(type(of: superview))")
-            print("DEBUG: Button superview frame: \(superview.frame)")
+            print("DEBUG: ✅ Button should now be in main view, not scroll view")
         }
 
-        // Ensure scroll view has correct content size to show the button
-        scrollView.layoutIfNeeded()
+        // Add a tap gesture as a fallback
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleButtonTap))
+        postDonationButton.addGestureRecognizer(tapGesture)
+        print("DEBUG: Added tap gesture recognizer to button")
 
-        // Calculate required content height
-        let buttonMaxY = postDonationButton.frame.maxY + 20 // Add padding
-        if scrollView.contentSize.height < buttonMaxY {
-            print("DEBUG: Adjusting scroll view content size from \(scrollView.contentSize.height) to \(buttonMaxY)")
-            scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: buttonMaxY)
-        }
+        // Bring button to front
+        view.bringSubviewToFront(postDonationButton)
+    }
+
+    @objc private func handleButtonTap() {
+        print("DEBUG: 👆 TAP GESTURE RECOGNIZED!")
+        postDonationButtonTapped()
     }
 
     // MARK: - Setup
