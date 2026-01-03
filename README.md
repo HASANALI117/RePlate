@@ -91,30 +91,6 @@
 
 ---
 
-## 🎨 Design Changes
-
-### 1. UI Architecture Migration
-
-- Migrated DonationReviewViewController from Storyboard to programmatic UI
-- Improved button interaction handling
-- Better constraint management and performance
-
-### 2. Simplified Donation Flow
-
-- Streamlined 4-step process
-- Removed current location button
-- Simplified address input
-- Enhanced pickup time handling
-
-### 3. Enhanced Navigation Structure
-
-- Modal presentation for donation creation flow
-- Improved navigation between screens
-- Added proper dismiss and navigation after successful donation
-- Smooth transition to browse page after posting
-
----
-
 ## 📦 Libraries, Packages & External Code
 
 ### Firebase iOS SDK (v12.7.0+)
@@ -190,42 +166,17 @@ Or open manually in Xcode.
 
 ## 📱 Simulators Used for Testing
 
-### Primary Testing Devices
+### Testing Devices
 
 - iPhone 15 Pro (iOS 18.5)
-- iPhone 15 (iOS 18.5)
-- iPhone 15 Pro Max (iOS 18.5)
-
-### Secondary Testing Devices
-
-- iPhone 14 Pro (iOS 18.5)
-
-### Supported Orientations
-
-- Portrait (Primary)
-- Landscape Left
-- Landscape Right
 
 ---
 
 ## 🔐 Admin/Test Login Credentials
 
-### Test Donor Account
-
 ```
-Email: donor@test.com
-Password: test123
+Email: admin@gmail.com
+Password: admin123
 ```
-
-### Test Recipient Account
-
-```
-Email: recipient@test.com
-Password: test123
-```
-
-> **Note:** Test accounts should be created in Firebase Authentication Console for the project (replate-95f0d)
 
 ---
-
-**Last Updated:** January 2026
