@@ -48,6 +48,13 @@ class DonationDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Debug: Check donation state
+        print("DEBUG: DetailsVC - viewDidLoad")
+        print("DEBUG: DetailsVC - Donation received:")
+        print("  - Category: \(donation.category.rawValue)")
+        print("  - Item: \(donation.itemName)")
+        print("  - Quantity: \(donation.quantity)")
+
         // Setup progress bar
         progressBar.setProgress(step: 2, totalSteps: 4)
 
@@ -172,28 +179,53 @@ class DonationDetailsViewController: UIViewController {
     }
 
     @objc private func nextButtonTapped() {
+        print("DEBUG: DetailsVC - Next button tapped")
+
         // Validate description
         guard !descriptionTextView.text.isEmpty else {
             showAlert(title: "Missing Information", message: "Please add a description")
             return
         }
 
+        print("DEBUG: DetailsVC - Description: \(descriptionTextView.text ?? "")")
+        print("DEBUG: DetailsVC - Selected allergens: \(selectedAllergens)")
+
         // Update donation object
         donation.description = descriptionTextView.text
         donation.allergens = Array(selectedAllergens)
+
+        print("DEBUG: DetailsVC - Updated donation with details")
+        print("DEBUG: DetailsVC - Current donation state:")
+        print("  - Category: \(donation.category.rawValue)")
+        print("  - Item: \(donation.itemName)")
+        print("  - Quantity: \(donation.quantity)")
+        print("  - Description: \(donation.description)")
 
         // TODO: Upload photo to Firebase Storage and save URL
         // For now, we'll just proceed
 
         // Navigate to next screen via segue
+        print("DEBUG: DetailsVC - Performing segue to showDonationLocation")
         performSegue(withIdentifier: "showDonationLocation", sender: self)
     }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("DEBUG: DetailsVC - prepare(for segue) called")
+        print("DEBUG: DetailsVC - Segue identifier: \(segue.identifier ?? "nil")")
+
         if segue.identifier == "showDonationLocation",
            let locationVC = segue.destination as? DonationLocationViewController {
+            print("DEBUG: DetailsVC - Passing donation to LocationVC")
+            print("DEBUG: DetailsVC - Donation state:")
+            print("  - Category: \(donation.category.rawValue)")
+            print("  - Item: \(donation.itemName)")
+            print("  - Quantity: \(donation.quantity)")
+            print("  - Description: \(donation.description)")
             locationVC.donation = donation
+            print("DEBUG: DetailsVC - ✅ Donation passed")
+        } else {
+            print("DEBUG: DetailsVC - ❌ Segue or destination mismatch")
         }
     }
 
