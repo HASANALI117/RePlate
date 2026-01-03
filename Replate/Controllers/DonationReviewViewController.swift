@@ -49,22 +49,22 @@ class DonationReviewViewController: UIViewController {
     }()
 
     private let foodInfoCard: ReviewCard = {
-        let card = ReviewCard()
-        card.titleText = "Food Information"
+        let card = ReviewCard(title: "Food Information")
+        card.showChevron = false
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()
 
     private let detailsCard: ReviewCard = {
-        let card = ReviewCard()
-        card.titleText = "Details"
+        let card = ReviewCard(title: "Details")
+        card.showChevron = false
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()
 
     private let pickupInfoCard: ReviewCard = {
-        let card = ReviewCard()
-        card.titleText = "Pickup Information"
+        let card = ReviewCard(title: "Pickup Information")
+        card.showChevron = false
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()
