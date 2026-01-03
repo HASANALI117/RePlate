@@ -271,6 +271,11 @@ class DonationReviewViewController: UIViewController {
     }
 
     private func showSuccessAndDismiss() {
+        print("DEBUG: ========================================")
+        print("DEBUG: showSuccessAndDismiss() called")
+        print("DEBUG: ========================================")
+
+        // Create success view controller immediately
         let successVC = SuccessViewController(
             title: "Donation Posted!",
             message: "Your donation is now live and available for pickup"
@@ -281,10 +286,8 @@ class DonationReviewViewController: UIViewController {
             }
 
             print("DEBUG: ========================================")
-            print("DEBUG: Success button tapped!")
+            print("DEBUG: Success OK button tapped!")
             print("DEBUG: ========================================")
-            print("DEBUG: self.navigationController = \(String(describing: self.navigationController))")
-            print("DEBUG: self.presentingViewController = \(String(describing: self.presentingViewController))")
 
             // Get navigation controller reference
             guard let navController = self.navigationController else {
@@ -318,8 +321,26 @@ class DonationReviewViewController: UIViewController {
             }
         }
 
-        print("DEBUG: Presenting success screen...")
-        present(successVC, animated: true)
+        print("DEBUG: SuccessVC created, about to present...")
+        print("DEBUG: self.presentedViewController = \(String(describing: self.presentedViewController))")
+        print("DEBUG: self.view.window = \(String(describing: self.view.window))")
+
+        // If there's already something presented, dismiss it first
+        if let presented = self.presentedViewController {
+            print("DEBUG: ⚠️ There's already a presented VC: \(type(of: presented))")
+            print("DEBUG: Dismissing it first...")
+            presented.dismiss(animated: false) {
+                print("DEBUG: Previous VC dismissed, now presenting success...")
+                self.present(successVC, animated: true) {
+                    print("DEBUG: ✅ SuccessViewController presentation completed!")
+                }
+            }
+        } else {
+            print("DEBUG: No existing presented VC, presenting directly...")
+            self.present(successVC, animated: true) {
+                print("DEBUG: ✅ SuccessViewController presentation completed!")
+            }
+        }
     }
 
     private func dismissAndNavigateToBrowse() {
