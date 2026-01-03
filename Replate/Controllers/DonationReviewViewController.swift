@@ -26,6 +26,19 @@ class DonationReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Debug: Check if donation was passed
+        if donation == nil {
+            print("DEBUG: ❌ DONATION IS NIL IN REVIEW VC!")
+        } else {
+            print("DEBUG: ✅ Donation received in ReviewVC:")
+            print("  - Category: \(donation.category.rawValue)")
+            print("  - Item Name: \(donation.itemName)")
+            print("  - Quantity: \(donation.quantity) \(donation.quantityUnit.rawValue)")
+            print("  - Description: \(donation.description)")
+            print("  - Location: \(donation.location.address)")
+            print("  - Donor ID: \(donation.donorId)")
+        }
+
         // Setup progress bar
         progressBar.setProgress(step: 4, totalSteps: 4)
 
@@ -125,10 +138,63 @@ class DonationReviewViewController: UIViewController {
             title: "Donation Posted!",
             message: "Your donation is now live and available for pickup"
         ) { [weak self] in
-            // Dismiss the entire navigation flow
-            self?.navigationController?.dismiss(animated: true)
+            guard let self = self else { return }
+
+            // Dismiss the success screen first
+            self.dismiss(animated: true) {
+                // Then navigate to browse page
+                self.navigateToBrowsePage()
+            }
         }
         present(successVC, animated: true)
+    }
+
+    private func navigateToBrowsePage() {
+        print("DEBUG: Navigating to browse page...")
+
+        // Dismiss the entire donation flow (modal presentation)
+        navigationController?.dismiss(animated: true) {
+            // After dismissing, navigate to browse donations page
+            // Find the root view controller
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first,
+                  let rootViewController = window.rootViewController else {
+                print("DEBUG: Could not find root view controller")
+                return
+            }
+
+            print("DEBUG: Root VC type: \(type(of: rootViewController))")
+
+            // Create the browse donations view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController {
+
+                // Navigate based on the root view controller type
+                if let tabBarController = rootViewController as? UITabBarController {
+                    // If root is a tab bar, get the selected navigation controller
+                    if let navController = tabBarController.selectedViewController as? UINavigationController {
+                        navController.pushViewController(browseDonationsVC, animated: true)
+                        print("DEBUG: Pushed to tab bar's nav controller")
+                    } else {
+                        // Selected tab is not a nav controller, wrap browse VC in one
+                        let nav = UINavigationController(rootViewController: browseDonationsVC)
+                        tabBarController.present(nav, animated: true)
+                        print("DEBUG: Presented modally from tab bar")
+                    }
+                } else if let navController = rootViewController as? UINavigationController {
+                    // Root is a navigation controller
+                    navController.pushViewController(browseDonationsVC, animated: true)
+                    print("DEBUG: Pushed to root nav controller")
+                } else {
+                    // Root is something else, present modally
+                    let nav = UINavigationController(rootViewController: browseDonationsVC)
+                    rootViewController.present(nav, animated: true)
+                    print("DEBUG: Presented modally from root")
+                }
+            } else {
+                print("DEBUG: Could not instantiate BrowseDonationsViewController")
+            }
+        }
     }
 
     // MARK: - Helper

@@ -113,18 +113,32 @@ class DonationLocationViewController: UIViewController {
     }
 
     @objc private func nextButtonTapped() {
+        print("DEBUG: LocationVC - Next button tapped")
+
         // Validate location
         guard let addressText = addressTextField.text, !addressText.isEmpty else {
             showAlert(title: "Missing Location", message: "Please enter a pickup location")
             return
         }
 
+        print("DEBUG: LocationVC - Address entered: \(addressText)")
+
         // Update donation object
         donation.location.address = addressText
         donation.pickupTime = .asap // Default to ASAP
         donation.specialInstructions = specialInstructionsTextView.text.isEmpty ? nil : specialInstructionsTextView.text
 
+        print("DEBUG: LocationVC - Donation updated with location info")
+        print("DEBUG: LocationVC - Full donation state:")
+        print("  - Category: \(donation.category.rawValue)")
+        print("  - Item: \(donation.itemName)")
+        print("  - Quantity: \(donation.quantity)")
+        print("  - Description: \(donation.description)")
+        print("  - Location: \(donation.location.address)")
+        print("  - Donor ID: \(donation.donorId)")
+
         // Navigate to review screen via segue
+        print("DEBUG: LocationVC - Performing segue to showDonationReview")
         performSegue(withIdentifier: "showDonationReview", sender: self)
     }
 
@@ -135,9 +149,24 @@ class DonationLocationViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDonationReview",
-           let reviewVC = segue.destination as? DonationReviewViewController {
-            reviewVC.donation = donation
+        print("DEBUG: LocationVC - prepare(for segue) called")
+        print("DEBUG: LocationVC - Segue identifier: \(segue.identifier ?? "nil")")
+        print("DEBUG: LocationVC - Destination VC type: \(type(of: segue.destination))")
+
+        if segue.identifier == "showDonationReview" {
+            if let reviewVC = segue.destination as? DonationReviewViewController {
+                print("DEBUG: LocationVC - Passing donation to ReviewVC")
+                print("DEBUG: LocationVC - Donation before passing:")
+                print("  - Category: \(donation.category.rawValue)")
+                print("  - Item: \(donation.itemName)")
+                print("  - Location: \(donation.location.address)")
+                reviewVC.donation = donation
+                print("DEBUG: LocationVC - ✅ Donation passed successfully")
+            } else {
+                print("DEBUG: LocationVC - ❌ Could not cast destination to DonationReviewViewController")
+            }
+        } else {
+            print("DEBUG: LocationVC - ❌ Segue identifier '\(segue.identifier ?? "nil")' does not match 'showDonationReview'")
         }
     }
 
