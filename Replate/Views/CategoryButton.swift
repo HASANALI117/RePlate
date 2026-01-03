@@ -100,11 +100,16 @@ class CategoryBtn: UIButton {
         layer.cornerRadius = 12
         layer.borderWidth = 2
         layer.borderColor = UIColor.systemGray5.cgColor
-        
+
         // Set initial values
         iconImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
         iconImageView.tintColor = isSelected ? Constants.Colors.primaryGreen : .systemGray3
         label.text = categoryName
+
+        // Disable user interaction on subviews so touches pass through to button
+        iconImageView.isUserInteractionEnabled = false
+        label.isUserInteractionEnabled = false
+        chevronImageView.isUserInteractionEnabled = false
 
         addSubview(iconImageView)
         addSubview(label)

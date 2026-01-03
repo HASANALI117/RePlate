@@ -60,6 +60,7 @@ class LocationSelectionView: UIView {
     // MARK: - Setup
     private func setupUI() {
         backgroundColor = .clear
+        isUserInteractionEnabled = false  // Disable interaction on the entire view
 
         // Add subviews
         addSubview(mapView)

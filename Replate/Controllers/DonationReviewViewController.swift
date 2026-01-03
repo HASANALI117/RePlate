@@ -35,6 +35,19 @@ class DonationReviewViewController: UIViewController {
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
+
+        // Ensure button is visible and on top
+        postDonationButton.isHidden = false
+        postDonationButton.alpha = 1.0
+        view.bringSubviewToFront(postDonationButton)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("DEBUG: Post donation button frame: \(postDonationButton.frame)")
+        print("DEBUG: Post donation button isHidden: \(postDonationButton.isHidden)")
+        print("DEBUG: Post donation button alpha: \(postDonationButton.alpha)")
+        print("DEBUG: View bounds: \(view.bounds)")
     }
 
     // MARK: - Setup

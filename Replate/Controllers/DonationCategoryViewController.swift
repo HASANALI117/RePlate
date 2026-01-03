@@ -42,10 +42,23 @@ class DonationCategoryViewController: UIViewController {
         // Setup category buttons references
         categoryButtons = categoryStackView.arrangedSubviews.compactMap { $0 as? CategoryBtn }
 
+        // Map category buttons to their respective categories based on their text
+        for button in categoryButtons {
+            if button.categoryName == "Fresh Produce" {
+                button.category = .freshProduce
+            } else if button.categoryName == "Cooked Meals" {
+                button.category = .cookedMeals
+            } else if button.categoryName == "Packaged Goods" {
+                button.category = .packagedGoods
+            }
+        }
+
         // Select first category by default
         categoryButtons.first?.isSelected = true
         selectedCategory = categoryButtons.first?.category ?? .freshProduce
         updateDefaultUnit()
+
+        print("DEBUG: Found \(categoryButtons.count) category buttons")
 
         // Setup button actions
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)

@@ -65,6 +65,11 @@ class DonationLocationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         debugTextFieldSetup()
+
+        // Ensure text field and text view are interactive and on top
+        view.bringSubviewToFront(scrollView)
+        scrollView.bringSubviewToFront(addressTextField)
+        scrollView.bringSubviewToFront(specialInstructionsTextView)
     }
 
     // MARK: - Setup
