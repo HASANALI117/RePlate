@@ -24,7 +24,7 @@ class DonationLocationViewController: UIViewController {
     @IBOutlet weak var locationSelectionView: LocationSelectionView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var specialInstructionsTextView: UITextView!
-
+    
     private let instructionsPlaceholderLabel: UILabel = {
         let label = UILabel()
         label.text = "e.g., Ring the bell twice, Use side entrance"
