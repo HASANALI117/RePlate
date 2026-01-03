@@ -12,19 +12,87 @@ class DonationReviewViewController: UIViewController {
     // MARK: - Properties
     var donation: Donation!
 
-    // MARK: - IBOutlets
-    @IBOutlet weak var progressBar: DonationProgressView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var foodInfoCard: ReviewCard!
-    @IBOutlet weak var detailsCard: ReviewCard!
-    @IBOutlet weak var pickupInfoCard: ReviewCard!
-    @IBOutlet weak var postDonationButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // MARK: - UI Components (Programmatic)
+    private let progressBar: DonationProgressView = {
+        let view = DonationProgressView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .label
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.showsVerticalScrollIndicator = true
+        return scroll
+    }()
+
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Review Donation"
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private let foodInfoCard: ReviewCard = {
+        let card = ReviewCard()
+        card.titleText = "Food Information"
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let detailsCard: ReviewCard = {
+        let card = ReviewCard()
+        card.titleText = "Details"
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let pickupInfoCard: ReviewCard = {
+        let card = ReviewCard()
+        card.titleText = "Pickup Information"
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let postDonationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Post Donation", for: .normal)
+        button.backgroundColor = Constants.Colors.primaryGreen
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        button.layer.cornerRadius = 12
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .white
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .systemBackground
 
         // Debug: Check if donation was passed
         if donation == nil {
@@ -39,78 +107,95 @@ class DonationReviewViewController: UIViewController {
             print("  - Donor ID: \(donation.donorId)")
         }
 
-        // Debug: Check if button outlet is connected
-        if postDonationButton == nil {
-            print("DEBUG: ❌ POST DONATION BUTTON OUTLET IS NOT CONNECTED!")
-        } else {
-            print("DEBUG: ✅ Post donation button outlet is connected")
-        }
+        setupUI()
+        setupConstraints()
+        populateReviewData()
 
         // Setup progress bar
         progressBar.setProgress(step: 4, totalSteps: 4)
 
-        // Populate review data
-        populateReviewData()
-
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
 
-        if postDonationButton != nil {
-            postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
-
-            // Ensure button is visible and on top
-            postDonationButton.isHidden = false
-            postDonationButton.alpha = 1.0
-            postDonationButton.isUserInteractionEnabled = true
-            postDonationButton.isEnabled = true
-        }
+        print("DEBUG: ✅ Programmatic UI setup complete")
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    // MARK: - UI Setup
+    private func setupUI() {
+        // Add subviews
+        view.addSubview(progressBar)
+        view.addSubview(backButton)
+        view.addSubview(scrollView)
+        view.addSubview(postDonationButton)
+        postDonationButton.addSubview(activityIndicator)
 
-        // FORCE the button out of scroll view and pin to bottom
-        if postDonationButton.superview == scrollView {
-            print("DEBUG: ⚠️ Button is inside scroll view - moving it out")
-            postDonationButton.removeFromSuperview()
-            view.addSubview(postDonationButton)
+        scrollView.addSubview(contentView)
 
-            postDonationButton.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-                postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
-                postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-                postDonationButton.heightAnchor.constraint(equalToConstant: 52)
-            ])
-
-            view.layoutIfNeeded()
-        }
-
-        print("DEBUG: Post donation button frame: \(postDonationButton.frame)")
-        print("DEBUG: Post donation button isHidden: \(postDonationButton.isHidden)")
-        print("DEBUG: Post donation button alpha: \(postDonationButton.alpha)")
-        print("DEBUG: Post donation button isEnabled: \(postDonationButton.isEnabled)")
-        print("DEBUG: Post donation button isUserInteractionEnabled: \(postDonationButton.isUserInteractionEnabled)")
-        print("DEBUG: View bounds: \(view.bounds)")
-
-        // Check button's superview
-        if let superview = postDonationButton.superview {
-            print("DEBUG: Button superview type: \(type(of: superview))")
-            print("DEBUG: ✅ Button should now be in main view, not scroll view")
-        }
-
-        // Add a tap gesture as a fallback
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleButtonTap))
-        postDonationButton.addGestureRecognizer(tapGesture)
-        print("DEBUG: Added tap gesture recognizer to button")
-
-        // Bring button to front
-        view.bringSubviewToFront(postDonationButton)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(foodInfoCard)
+        contentView.addSubview(detailsCard)
+        contentView.addSubview(pickupInfoCard)
     }
 
-    @objc private func handleButtonTap() {
-        print("DEBUG: 👆 TAP GESTURE RECOGNIZED!")
-        postDonationButtonTapped()
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            // Progress bar
+            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            progressBar.heightAnchor.constraint(equalToConstant: 8),
+
+            // Back button
+            backButton.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 16),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            backButton.widthAnchor.constraint(equalToConstant: 44),
+            backButton.heightAnchor.constraint(equalToConstant: 44),
+
+            // Scroll view
+            scrollView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 8),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: postDonationButton.topAnchor, constant: -16),
+
+            // Content view (inside scroll view)
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            // Title
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Food info card
+            foodInfoCard.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+            foodInfoCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            foodInfoCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Details card
+            detailsCard.topAnchor.constraint(equalTo: foodInfoCard.bottomAnchor, constant: 16),
+            detailsCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            detailsCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Pickup info card
+            pickupInfoCard.topAnchor.constraint(equalTo: detailsCard.bottomAnchor, constant: 16),
+            pickupInfoCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            pickupInfoCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            pickupInfoCard.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+
+            // Post donation button (pinned to bottom of main view)
+            postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+            postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            postDonationButton.heightAnchor.constraint(equalToConstant: 52),
+
+            // Activity indicator (centered in button)
+            activityIndicator.centerXAnchor.constraint(equalTo: postDonationButton.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: postDonationButton.centerYAnchor)
+        ])
     }
 
     // MARK: - Setup
@@ -163,7 +248,7 @@ class DonationReviewViewController: UIViewController {
 
         print("DEBUG: Calling Firebase to save donation...")
 
-        // Save to Firestore using DonationService
+        // Save to Realtime Database using DonationService
         DonationService.shared.createDonation(donation) { [weak self] result in
             guard let self = self else { return }
 
