@@ -61,6 +61,25 @@ class DonationReviewViewController: UIViewController {
             // Ensure button is visible and on top
             postDonationButton.isHidden = false
             postDonationButton.alpha = 1.0
+            postDonationButton.isUserInteractionEnabled = true
+            postDonationButton.isEnabled = true
+
+            // Remove the button from scroll view and add to main view if needed
+            if postDonationButton.superview == scrollView {
+                print("DEBUG: Moving button from scroll view to main view")
+                postDonationButton.removeFromSuperview()
+                view.addSubview(postDonationButton)
+
+                // Re-setup constraints to pin to bottom of view
+                postDonationButton.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+                    postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+                    postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+                    postDonationButton.heightAnchor.constraint(equalToConstant: 52)
+                ])
+            }
+
             view.bringSubviewToFront(postDonationButton)
         }
     }
@@ -127,7 +146,9 @@ class DonationReviewViewController: UIViewController {
     }
 
     @objc private func postDonationButtonTapped() {
-        print("DEBUG: Post donation button tapped!")
+        print("DEBUG: ========================================")
+        print("DEBUG: 🎯 POST DONATION BUTTON TAPPED!")
+        print("DEBUG: ========================================")
         print("DEBUG: Donation data - Category: \(donation.category.rawValue), Item: \(donation.itemName)")
 
         postDonationButton.isEnabled = false
