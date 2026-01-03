@@ -288,49 +288,23 @@ class DonationReviewViewController: UIViewController {
 
     private func navigateToBrowsePage() {
         print("DEBUG: Navigating to browse page...")
-
-        // Dismiss the entire donation flow (modal presentation)
-        navigationController?.dismiss(animated: true) {
-            // After dismissing, navigate to browse donations page
-            // Find the root view controller
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let window = windowScene.windows.first,
-                  let rootViewController = window.rootViewController else {
-                print("DEBUG: Could not find root view controller")
-                return
-            }
-
-            print("DEBUG: Root VC type: \(type(of: rootViewController))")
-
-            // Create the browse donations view controller
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController {
-
-                // Navigate based on the root view controller type
-                if let tabBarController = rootViewController as? UITabBarController {
-                    // If root is a tab bar, get the selected navigation controller
-                    if let navController = tabBarController.selectedViewController as? UINavigationController {
-                        navController.pushViewController(browseDonationsVC, animated: true)
-                        print("DEBUG: Pushed to tab bar's nav controller")
-                    } else {
-                        // Selected tab is not a nav controller, wrap browse VC in one
-                        let nav = UINavigationController(rootViewController: browseDonationsVC)
-                        tabBarController.present(nav, animated: true)
-                        print("DEBUG: Presented modally from tab bar")
-                    }
-                } else if let navController = rootViewController as? UINavigationController {
-                    // Root is a navigation controller
-                    navController.pushViewController(browseDonationsVC, animated: true)
-                    print("DEBUG: Pushed to root nav controller")
-                } else {
-                    // Root is something else, present modally
-                    let nav = UINavigationController(rootViewController: browseDonationsVC)
-                    rootViewController.present(nav, animated: true)
-                    print("DEBUG: Presented modally from root")
-                }
+        
+        // Create the browse donations view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController {
+            
+            // Pop to root and push the browse VC
+            if let navController = navigationController {
+                // Get all view controllers and keep only the first one (root)
+                var viewControllers = navController.viewControllers
+                viewControllers = [viewControllers[0], browseDonationsVC]
+                navController.setViewControllers(viewControllers, animated: true)
+                print("DEBUG: ✅ Navigated to BrowseDonationsViewController")
             } else {
-                print("DEBUG: Could not instantiate BrowseDonationsViewController")
+                print("DEBUG: ❌ No navigation controller found")
             }
+        } else {
+            print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController - check Storyboard ID")
         }
     }
 
