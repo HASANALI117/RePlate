@@ -39,6 +39,13 @@ class DonationReviewViewController: UIViewController {
             print("  - Donor ID: \(donation.donorId)")
         }
 
+        // Debug: Check if button outlet is connected
+        if postDonationButton == nil {
+            print("DEBUG: ❌ POST DONATION BUTTON OUTLET IS NOT CONNECTED!")
+        } else {
+            print("DEBUG: ✅ Post donation button outlet is connected")
+        }
+
         // Setup progress bar
         progressBar.setProgress(step: 4, totalSteps: 4)
 
@@ -47,12 +54,15 @@ class DonationReviewViewController: UIViewController {
 
         // Setup actions
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
 
-        // Ensure button is visible and on top
-        postDonationButton.isHidden = false
-        postDonationButton.alpha = 1.0
-        view.bringSubviewToFront(postDonationButton)
+        if postDonationButton != nil {
+            postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
+
+            // Ensure button is visible and on top
+            postDonationButton.isHidden = false
+            postDonationButton.alpha = 1.0
+            view.bringSubviewToFront(postDonationButton)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -61,6 +71,24 @@ class DonationReviewViewController: UIViewController {
         print("DEBUG: Post donation button isHidden: \(postDonationButton.isHidden)")
         print("DEBUG: Post donation button alpha: \(postDonationButton.alpha)")
         print("DEBUG: View bounds: \(view.bounds)")
+        print("DEBUG: ScrollView frame: \(scrollView.frame)")
+        print("DEBUG: ScrollView contentSize: \(scrollView.contentSize)")
+
+        // Check button's superview
+        if let superview = postDonationButton.superview {
+            print("DEBUG: Button superview type: \(type(of: superview))")
+            print("DEBUG: Button superview frame: \(superview.frame)")
+        }
+
+        // Ensure scroll view has correct content size to show the button
+        scrollView.layoutIfNeeded()
+
+        // Calculate required content height
+        let buttonMaxY = postDonationButton.frame.maxY + 20 // Add padding
+        if scrollView.contentSize.height < buttonMaxY {
+            print("DEBUG: Adjusting scroll view content size from \(scrollView.contentSize.height) to \(buttonMaxY)")
+            scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: buttonMaxY)
+        }
     }
 
     // MARK: - Setup
