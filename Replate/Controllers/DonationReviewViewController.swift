@@ -280,69 +280,45 @@ class DonationReviewViewController: UIViewController {
                 return
             }
 
-            print("DEBUG: Success button tapped, preparing to navigate...")
+            print("DEBUG: ========================================")
+            print("DEBUG: Success button tapped!")
+            print("DEBUG: ========================================")
+            print("DEBUG: self.navigationController = \(String(describing: self.navigationController))")
+            print("DEBUG: self.presentingViewController = \(String(describing: self.presentingViewController))")
 
             // Get navigation controller reference
             guard let navController = self.navigationController else {
-                print("DEBUG: ❌ No navigation controller found")
+                print("DEBUG: ❌ No navigation controller - this shouldn't happen!")
                 self.dismiss(animated: true)
                 return
             }
 
             print("DEBUG: ✅ Found navigation controller")
-            print("DEBUG: Current nav stack count: \(navController.viewControllers.count)")
-            print("DEBUG: Nav stack: \(navController.viewControllers.map { type(of: $0) })")
-
-            // Check if this nav controller is presented modally
-            let presentingVC = navController.presentingViewController
-            print("DEBUG: presentingViewController = \(String(describing: presentingVC))")
-            print("DEBUG: presentingViewController type = \(presentingVC != nil ? String(describing: type(of: presentingVC!)) : "nil")")
+            print("DEBUG: Current nav stack: \(navController.viewControllers.map { type(of: $0) })")
 
             // Create the browse donations view controller from storyboard
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController else {
-                print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController - check Storyboard ID")
+                print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController")
                 self.dismiss(animated: true)
                 return
             }
 
-            print("DEBUG: ✅ Created BrowseDonationsViewController from storyboard")
+            print("DEBUG: ✅ Created BrowseDonationsViewController")
 
             // Dismiss success screen first
+            print("DEBUG: Dismissing success screen...")
             self.dismiss(animated: true) {
-                print("DEBUG: ✅ Dismissed success screen")
+                print("DEBUG: ✅ Success screen dismissed")
+                print("DEBUG: Replacing navigation stack with BrowseDonationsViewController...")
 
-                // Check if the donation flow is presented modally
-                if let presentingVC = presentingVC {
-                    print("DEBUG: Donation flow is MODAL - dismissing and navigating from presenting VC")
-
-                    // Dismiss the entire modal donation flow
-                    presentingVC.dismiss(animated: true) {
-                        print("DEBUG: ✅ Dismissed modal donation flow")
-
-                        // Navigate to browse page from presenting VC
-                        if let targetNavController = presentingVC as? UINavigationController {
-                            targetNavController.pushViewController(browseDonationsVC, animated: true)
-                            print("DEBUG: ✅ Pushed to presenting nav controller")
-                        } else if let targetNavController = presentingVC.navigationController {
-                            targetNavController.pushViewController(browseDonationsVC, animated: true)
-                            print("DEBUG: ✅ Pushed via presenting VC's nav controller")
-                        } else {
-                            let nav = UINavigationController(rootViewController: browseDonationsVC)
-                            presentingVC.present(nav, animated: true)
-                            print("DEBUG: ⚠️ Presented browse VC modally")
-                        }
-                    }
-                } else {
-                    print("DEBUG: Donation flow is PUSHED - replacing nav stack")
-
-                    // The donation flow is pushed, not modal
-                    // Replace the entire navigation stack with BrowseDonationsViewController
-                    navController.setViewControllers([browseDonationsVC], animated: true)
-                    print("DEBUG: ✅ Replaced nav stack with BrowseDonationsViewController")
-                }
+                // Replace the entire donation flow with browse donations page
+                navController.setViewControllers([browseDonationsVC], animated: true)
+                print("DEBUG: ✅ Navigation complete!")
             }
         }
+
+        print("DEBUG: Presenting success screen...")
         present(successVC, animated: true)
     }
 
