@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_packagedGoods.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,427 @@
+//
+//  DonationReviewViewController.swift
+//  Replate
+//
+//  Created on 2025-12-17.
+//
+
+import UIKit
+
+class DonationReviewViewController: UIViewController {
+
+    // MARK: - Properties
+    var donation: Donation!
+
+    // MARK: - UI Components (Programmatic)
+    private let progressBar: DonationProgressView = {
+        let view = DonationProgressView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .label
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.showsVerticalScrollIndicator = true
+        return scroll
+    }()
+
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Review Donation"
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private let foodInfoCard: ReviewCard = {
+        let card = ReviewCard(title: "Food Information")
+        card.showChevron = false
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let detailsCard: ReviewCard = {
+        let card = ReviewCard(title: "Details")
+        card.showChevron = false
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let pickupInfoCard: ReviewCard = {
+        let card = ReviewCard(title: "Pickup Information")
+        card.showChevron = false
+        card.translatesAutoresizingMaskIntoConstraints = false
+        return card
+    }()
+
+    private let postDonationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Post Donation", for: .normal)
+        button.backgroundColor = Constants.Colors.primaryGreen
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        button.layer.cornerRadius = 12
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .white
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .systemBackground
+
+        // Debug: Check if donation was passed
+        if donation == nil {
+            print("DEBUG: ❌ DONATION IS NIL IN REVIEW VC!")
+        } else {
+            print("DEBUG: ✅ Donation received in ReviewVC:")
+            print("  - Category: \(donation.category.rawValue)")
+            print("  - Item Name: \(donation.itemName)")
+            print("  - Quantity: \(donation.quantity) \(donation.quantityUnit.rawValue)")
+            print("  - Description: \(donation.description)")
+            print("  - Location: \(donation.location.address)")
+            print("  - Donor ID: \(donation.donorId)")
+        }
+
+        setupUI()
+        setupConstraints()
+        populateReviewData()
+
+        // Setup progress bar
+        progressBar.setProgress(step: 4, totalSteps: 4)
+
+        // Setup actions
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        postDonationButton.addTarget(self, action: #selector(postDonationButtonTapped), for: .touchUpInside)
+
+        print("DEBUG: ✅ Programmatic UI setup complete")
+    }
+
+    // MARK: - UI Setup
+    private func setupUI() {
+        // Add subviews
+        view.addSubview(progressBar)
+        view.addSubview(backButton)
+        view.addSubview(scrollView)
+        view.addSubview(postDonationButton)
+        postDonationButton.addSubview(activityIndicator)
+
+        scrollView.addSubview(contentView)
+
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(foodInfoCard)
+        contentView.addSubview(detailsCard)
+        contentView.addSubview(pickupInfoCard)
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            // Progress bar
+            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            progressBar.heightAnchor.constraint(equalToConstant: 8),
+
+            // Back button
+            backButton.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 16),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            backButton.widthAnchor.constraint(equalToConstant: 44),
+            backButton.heightAnchor.constraint(equalToConstant: 44),
+
+            // Scroll view
+            scrollView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 8),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: postDonationButton.topAnchor, constant: -16),
+
+            // Content view (inside scroll view)
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            // Title
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Food info card
+            foodInfoCard.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+            foodInfoCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            foodInfoCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Details card
+            detailsCard.topAnchor.constraint(equalTo: foodInfoCard.bottomAnchor, constant: 16),
+            detailsCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            detailsCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Pickup info card
+            pickupInfoCard.topAnchor.constraint(equalTo: detailsCard.bottomAnchor, constant: 16),
+            pickupInfoCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            pickupInfoCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            pickupInfoCard.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+
+            // Post donation button (pinned to bottom of main view)
+            postDonationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            postDonationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+            postDonationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            postDonationButton.heightAnchor.constraint(equalToConstant: 52),
+
+            // Activity indicator (centered in button)
+            activityIndicator.centerXAnchor.constraint(equalTo: postDonationButton.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: postDonationButton.centerYAnchor)
+        ])
+    }
+
+    // MARK: - Setup
+    private func populateReviewData() {
+        // Food Information
+        foodInfoCard.addRow(icon: "leaf.circle.fill", iconColor: Constants.Colors.primaryGreen, label: "Category", value: donation.category.rawValue)
+        foodInfoCard.addRow(icon: "text.quote", iconColor: .systemGray, label: "Item Name", value: donation.itemName)
+        foodInfoCard.addRow(icon: "number", iconColor: .systemGray, label: "Quantity", value: "\(donation.quantity) \(donation.quantityUnit.rawValue)")
+
+        // Details
+        detailsCard.addRow(icon: "text.alignleft", iconColor: .systemGray, label: "Description", value: donation.description)
+
+        if let expiryDate = donation.expiryDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            detailsCard.addRow(icon: "calendar", iconColor: .systemGray, label: "Expires", value: formatter.string(from: expiryDate))
+        }
+
+        if !donation.allergens.isEmpty {
+            let allergenText = donation.allergens.map { $0.displayName }.joined(separator: ", ")
+            detailsCard.addRow(icon: "exclamationmark.triangle.fill", iconColor: .systemOrange, label: "Allergen Info", value: allergenText)
+        }
+
+        // Pickup Information
+        pickupInfoCard.addRow(icon: "mappin.circle.fill", iconColor: Constants.Colors.primaryGreen, label: "Location", value: donation.location.address)
+        pickupInfoCard.addRow(icon: "clock.fill", iconColor: .systemGray, label: "Pickup Time", value: donation.pickupTime.displayText)
+
+        if let instructions = donation.specialInstructions, !instructions.isEmpty {
+            pickupInfoCard.addRow(icon: "info.circle.fill", iconColor: .systemGray, label: "Instructions", value: instructions)
+        }
+    }
+
+    // MARK: - Actions
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc private func postDonationButtonTapped() {
+        print("DEBUG: ========================================")
+        print("DEBUG: 🎯 POST DONATION BUTTON TAPPED!")
+        print("DEBUG: ========================================")
+        print("DEBUG: Donation data - Category: \(donation.category.rawValue), Item: \(donation.itemName)")
+
+        postDonationButton.isEnabled = false
+        postDonationButton.setTitle("", for: .normal)
+        activityIndicator.startAnimating()
+
+        // Update status to available
+        donation.status = .available
+
+        print("DEBUG: Calling Firebase to save donation...")
+
+        // Save to Realtime Database using DonationService
+        DonationService.shared.createDonation(donation) { [weak self] result in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.postDonationButton.isEnabled = true
+                self.postDonationButton.setTitle("Post Donation", for: .normal)
+
+                switch result {
+                case .success(let savedDonation):
+                    print("DEBUG: ✅ Donation saved successfully! ID: \(savedDonation.id ?? "unknown")")
+                    self.donation = savedDonation
+                    self.showSuccessAndDismiss()
+                case .failure(let error):
+                    print("DEBUG: ❌ Failed to save donation: \(error.localizedDescription)")
+                    self.showAlert(title: "Error", message: "Failed to post donation: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+    private func showSuccessAndDismiss() {
+        print("DEBUG: ========================================")
+        print("DEBUG: showSuccessAndDismiss() called")
+        print("DEBUG: ========================================")
+
+        // Create success view controller immediately
+        let successVC = SuccessViewController(
+            title: "Donation Posted!",
+            message: "Your donation is now live and available for pickup"
+        ) { [weak self] in
+            guard let self = self else {
+                print("DEBUG: ❌ self is nil in success completion")
+                return
+            }
+
+            print("DEBUG: ========================================")
+            print("DEBUG: Success OK button tapped!")
+            print("DEBUG: ========================================")
+
+            // Get navigation controller reference
+            guard let navController = self.navigationController else {
+                print("DEBUG: ❌ No navigation controller - this shouldn't happen!")
+                self.dismiss(animated: true)
+                return
+            }
+
+            print("DEBUG: ✅ Found navigation controller")
+            print("DEBUG: Current nav stack: \(navController.viewControllers.map { type(of: $0) })")
+
+            // Create the browse donations view controller from storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController else {
+                print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController")
+                self.dismiss(animated: true)
+                return
+            }
+
+            print("DEBUG: ✅ Created BrowseDonationsViewController")
+
+            // Dismiss success screen first
+            print("DEBUG: Dismissing success screen...")
+            self.dismiss(animated: true) {
+                print("DEBUG: ✅ Success screen dismissed")
+                print("DEBUG: Replacing navigation stack with BrowseDonationsViewController...")
+
+                // Replace the entire donation flow with browse donations page
+                navController.setViewControllers([browseDonationsVC], animated: true)
+                print("DEBUG: ✅ Navigation complete!")
+            }
+        }
+
+        print("DEBUG: SuccessVC created, about to present...")
+        print("DEBUG: self.presentedViewController = \(String(describing: self.presentedViewController))")
+        print("DEBUG: self.view.window = \(String(describing: self.view.window))")
+        print("DEBUG: self.isViewLoaded = \(self.isViewLoaded)")
+        print("DEBUG: self.view.superview = \(String(describing: self.view.superview))")
+
+        // Present on next run loop to ensure view hierarchy is stable
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                print("DEBUG: ❌ self is nil in presentation block")
+                return
+            }
+
+            print("DEBUG: In async block, about to present...")
+            print("DEBUG: self.view.window (in async) = \(String(describing: self.view.window))")
+
+            // If there's already something presented, dismiss it first
+            if let presented = self.presentedViewController {
+                print("DEBUG: ⚠️ There's already a presented VC: \(type(of: presented))")
+                print("DEBUG: Dismissing it first...")
+                presented.dismiss(animated: false) {
+                    print("DEBUG: Previous VC dismissed, now presenting success...")
+                    self.present(successVC, animated: true) {
+                        print("DEBUG: ✅ SuccessViewController presentation completed!")
+                    }
+                }
+            } else {
+                print("DEBUG: No existing presented VC, presenting directly...")
+                self.present(successVC, animated: true) {
+                    print("DEBUG: ✅ SuccessViewController presentation completed!")
+                }
+            }
+        }
+    }
+
+    private func dismissAndNavigateToBrowse() {
+        print("DEBUG: Dismissing modal flow and navigating to browse page...")
+
+        // Get the navigation controller's presenting VC (the donation flow is presented modally)
+        guard let navController = self.navigationController,
+              let presentingVC = navController.presentingViewController else {
+            print("DEBUG: ❌ No presenting view controller or navigation controller")
+            print("DEBUG: self.navigationController = \(String(describing: self.navigationController))")
+            print("DEBUG: self.presentingViewController = \(String(describing: self.presentingViewController))")
+            return
+        }
+
+        print("DEBUG: ✅ Found navigation controller and presenting VC")
+        print("DEBUG: presentingVC type = \(type(of: presentingVC))")
+
+        // Create the browse donations view controller from storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let browseDonationsVC = storyboard.instantiateViewController(withIdentifier: "BrowseDonationsViewController") as? BrowseDonationsViewController else {
+            print("DEBUG: ❌ Could not instantiate BrowseDonationsViewController - check Storyboard ID")
+            return
+        }
+
+        print("DEBUG: ✅ Created BrowseDonationsViewController from storyboard")
+
+        // Dismiss the entire modal donation flow
+        presentingVC.dismiss(animated: true) {
+            print("DEBUG: ✅ Dismissed modal donation flow")
+
+            // Navigate to browse page
+            if let targetNavController = presentingVC as? UINavigationController {
+                targetNavController.pushViewController(browseDonationsVC, animated: true)
+                print("DEBUG: ✅ Pushed to nav controller")
+            } else if let targetNavController = presentingVC.navigationController {
+                targetNavController.pushViewController(browseDonationsVC, animated: true)
+                print("DEBUG: ✅ Pushed via presenting VC's nav controller")
+            } else {
+                let nav = UINavigationController(rootViewController: browseDonationsVC)
+                presentingVC.present(nav, animated: true)
+                print("DEBUG: ⚠️ Presented browse VC modally")
+            }
+        }
+    }
+
+    private func showSuccessAlert() {
+        let alert = UIAlertController(
+            title: "Donation Posted",
+            message: "Your donation has been posted successfully",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            guard
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let window = windowScene.windows.first,
+                let tabBar = window.rootViewController as? UITabBarController
+            else {
+                return
+            }
+
+            tabBar.selectedIndex = 0
+            window.rootViewController = tabBar
+            window.makeKeyAndVisible()
+        })
+
+
+
+        present(alert, animated: true)
+    }
+
+}
