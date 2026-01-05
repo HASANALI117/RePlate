@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class DonationCategoryViewController: UIViewController {
 
@@ -32,8 +33,17 @@ class DonationCategoryViewController: UIViewController {
         
         // Initialize donation if needed
         if donation == nil {
-            let mockUserId = "MOCK_USER_\(UUID().uuidString.prefix(8))"
-            donation = Donation(donorId: mockUserId)
+            // Get current authenticated user
+            guard let currentUser = Auth.auth().currentUser else {
+                // No user logged in - show alert and dismiss
+                showAlert(title: "Authentication Required",
+                         message: "Please log in to create a donation.") { [weak self] in
+                    self?.dismiss(animated: true)
+                }
+                return
+            }
+
+            donation = Donation(donorId: currentUser.uid)
         }
 
         // Setup progress bar
@@ -171,9 +181,11 @@ class DonationCategoryViewController: UIViewController {
     }
 
     // MARK: - Helper
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
         present(alert, animated: true)
     }
 }
