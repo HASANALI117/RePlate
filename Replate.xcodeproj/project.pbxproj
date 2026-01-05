@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		471A34582F09CDD00021FBD7 /* ProfileAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34542F09CDD00021FBD7 /* ProfileAuthViewController.swift */; };
-		471A34592F09CDD00021FBD7 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A344F2F09CDD00021FBD7 /* user.swift */; };
-		471A345A2F09CDD00021FBD7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34562F09CDD00021FBD7 /* HomeViewController.swift */; };
-		471A345B2F09CDD00021FBD7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34502F09CDD00021FBD7 /* SettingsViewController.swift */; };
-		471A345C2F09CDD00021FBD7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34512F09CDD00021FBD7 /* SignUpViewController.swift */; };
-		471A345D2F09CDD00021FBD7 /* userService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A344E2F09CDD00021FBD7 /* userService.swift */; };
-		471A345E2F09CDD00021FBD7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34552F09CDD00021FBD7 /* LoginViewController.swift */; };
-		471A345F2F09CDD00021FBD7 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34522F09CDD00021FBD7 /* SelectTypeViewController.swift */; };
-		471A34602F09CDD00021FBD7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A34532F09CDD00021FBD7 /* EditProfileViewController.swift */; };
 		471A34632F09CE7C0021FBD7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 471A34622F09CE7C0021FBD7 /* GoogleSignIn */; };
 		471A34652F09CE7C0021FBD7 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 471A34642F09CE7C0021FBD7 /* GoogleSignInSwift */; };
 		CC723CA82EEAB233009DA29D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CC723CA72EEAB233009DA29D /* FirebaseAnalytics */; };
@@ -28,15 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		471A344E2F09CDD00021FBD7 /* userService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userService.swift; sourceTree = "<group>"; };
-		471A344F2F09CDD00021FBD7 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
-		471A34502F09CDD00021FBD7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		471A34512F09CDD00021FBD7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		471A34522F09CDD00021FBD7 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTypeViewController.swift; sourceTree = "<group>"; };
-		471A34532F09CDD00021FBD7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		471A34542F09CDD00021FBD7 /* ProfileAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAuthViewController.swift; sourceTree = "<group>"; };
-		471A34552F09CDD00021FBD7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		471A34562F09CDD00021FBD7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CC3A42F12EE565FD00F80035 /* Replate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,26 +63,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		471A34572F09CDD00021FBD7 /* RePlate - Basem */ = {
-			isa = PBXGroup;
-			children = (
-				471A344E2F09CDD00021FBD7 /* userService.swift */,
-				471A344F2F09CDD00021FBD7 /* user.swift */,
-				471A34502F09CDD00021FBD7 /* SettingsViewController.swift */,
-				471A34512F09CDD00021FBD7 /* SignUpViewController.swift */,
-				471A34522F09CDD00021FBD7 /* SelectTypeViewController.swift */,
-				471A34532F09CDD00021FBD7 /* EditProfileViewController.swift */,
-				471A34542F09CDD00021FBD7 /* ProfileAuthViewController.swift */,
-				471A34552F09CDD00021FBD7 /* LoginViewController.swift */,
-				471A34562F09CDD00021FBD7 /* HomeViewController.swift */,
-			);
-			path = "RePlate - Basem";
-			sourceTree = "<group>";
-		};
 		CC3A42E82EE565FD00F80035 = {
 			isa = PBXGroup;
 			children = (
-				471A34572F09CDD00021FBD7 /* RePlate - Basem */,
 				CC3A42F32EE565FD00F80035 /* Replate */,
 				CC3A42F22EE565FD00F80035 /* Products */,
 			);
@@ -201,15 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				471A34582F09CDD00021FBD7 /* ProfileAuthViewController.swift in Sources */,
-				471A34592F09CDD00021FBD7 /* user.swift in Sources */,
-				471A345A2F09CDD00021FBD7 /* HomeViewController.swift in Sources */,
-				471A345B2F09CDD00021FBD7 /* SettingsViewController.swift in Sources */,
-				471A345C2F09CDD00021FBD7 /* SignUpViewController.swift in Sources */,
-				471A345D2F09CDD00021FBD7 /* userService.swift in Sources */,
-				471A345E2F09CDD00021FBD7 /* LoginViewController.swift in Sources */,
-				471A345F2F09CDD00021FBD7 /* SelectTypeViewController.swift in Sources */,
-				471A34602F09CDD00021FBD7 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
